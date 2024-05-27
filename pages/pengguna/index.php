@@ -129,7 +129,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                         $bank = new User();
                         if (isset($_GET['user_id'])) {
                             $list = $bank->getDataById($_GET['user_id']);
-                        }else {
+                        } else {
                             $list = $bank->getData();
                         }
 
@@ -160,47 +160,15 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
         <!-- /.card-footer-->
     </div>
     <!-- /.card -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-
-    <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="plugins/jquery-validation/additional-methods.min.js"></script>
-    <script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
-
-
-    <script>
-        $(document).ready(function() { // maksud nya adl ketika dokumen sudah siap (html telah d render oleh browser) maka jalankan fungsi berikut ini
-
-            $('#form-tambah').validate({
-                rules: {
-                    kode_soal: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 10
-                    },
-                    nama_soal: {
-                        required: true,
-                        minlength: 5,
-                        maxlength: 255
-                    }
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-
-        });
-    </script>
 </section>
+
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
+
+
+<script>
+    $(document).ready(function() { // maksud nya adl ketika dokumen sudah siap (html telah d render oleh browser) maka jalankan fungsi berikut ini
+
+    });
+</script>

@@ -6,7 +6,7 @@ class mSurvey
 
     public function __construct()
     {   
-        include_once('model/koneksi.php');
+        include('model/koneksi.php');
         $this->db = $db;
         $this->db->set_charset('utf8');
     }
@@ -51,7 +51,7 @@ class mSurvey
         $query = $this->db->prepare("update {$this->table} set user_id = ?, survey_jenis = ?, survey_kode = ?, survey_nama = ?, survey_deskripsi = ?, survey_tanggal = ? where survey_id = ?");
 
         // binding parameter ke query
-        $query->bind_param('isssss', $data['user_id'], $data['survey_jenis'], $data['survey_kode'], $data['survey_nama'], $data['survey_deskripsi'], $data['survey_tanggal']);
+        $query->bind_param('isssssi', $data['user_id'], $data['survey_jenis'], $data['survey_kode'], $data['survey_nama'], $data['survey_deskripsi'], $data['survey_tanggal'], $id);
 
         // eksekusi query
         $query->execute();

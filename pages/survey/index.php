@@ -1,9 +1,10 @@
 <?php
+// ob_start();
 include_once 'model/survey/m_survey.php';
 include_once 'model/m_user_model.php';
 
 $status = isset($_GET['status']) ? $_GET['status'] : "";
-$message = isset($_GET['message']) ? $_GET['message'] : ""
+$message = isset($_GET['message']) ? $_GET['message'] : "";
 ?>
 
 <section class="content-header">
@@ -23,18 +24,21 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
 </section>
 
 <!-- Main content -->
+
+<!-- Tempus Dominus -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+
 <section class="content">
+
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"></h3>
-
             <div class="card-tools">
                 <a href="?pages=survey&act=tambah" class="btn btn-sm btn-primary">Tambah Survey</a>
             </div>
         </div>
         <div class="card-body">
-
             <?php
             $act = (isset($_GET['act'])) ? $_GET['act'] : '';
 
@@ -47,7 +51,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                     </div>
                     <div class="card-body">
                         <form action="?pages=survey/survey_action.php&act=simpan" method="post" id="form-tambah">
-                            <input type="hidden" name="user_id" value=<?= $_SESSION['user_id'] ?>>
+                            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
                             <div class="form-group">
                                 <label for="jenis_survey">Jenis Survey</label>
                                 <select class="custom-select rounded-1" name="jenis_survey">
@@ -66,13 +70,13 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                             </div>
                             <div class="form-group">
                                 <label>Deksripsi Survey</label>
-                                <textarea class="form-control" name="deskripsi_survey" rows="3" placeholder="Blablalabslablab"></textarea>
+                                <textarea class="form-control" name="deskripsi_survey" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Survey Perlu diganti!!!</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <label for="datetimepicker">Choose a date</label>
+                                <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                    <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" />
+                                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -84,33 +88,41 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                         </form>
                     </div>
                 </div>
-
             <?php } else if ($act == 'edit') { ?>
-
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Edit Soal Survey</h3>
                         <div class="card-tools"></div>
                     </div>
                     <div class="card-body">
-
                         <?php
                         $id = $_GET['id'];
-
                         $bank_soal = new mSurvey();
                         $data = $bank_soal->getDataById($id);
-
                         $data = $data->fetch_assoc();
                         ?>
-
                         <form action="?pages=survey/survey_action.php&act=edit&id=<?= $id ?>" method="post" id="form-tambah">
                             <div class="form-group">
                                 <label for="jenis_survey">Jenis Survey</label>
                                 <!-- Perlu implementasi!! -->
                                 <select class="custom-select rounded-1" name="jenis_survey">
-                                    <option>Opo</option>
-                                    <option>Opo</option>
-                                    <option>oasddpoasdsahd</option>
+                                    <option value="pilgan" <?= $data['survey_jenis'] == 'pilgan' ? 'selected' : '' ?>>Pilgan</option>
+                                    <option value="essay" <?= $data['survey_jenis'] == 'essay' ? 'selected' : '' ?>>Essay</option>
+                                    <option value="parameter" <?= $data['survey_jenis'] == 'parameter' ? 'selected' : '' ?>>Parameter</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_id">Pembuat</label>
+                                <!-- Perlu implementasi!! -->
+                                <select class="custom-select rounded-1" name="user_id">
+                                    <?php
+                                    $user = new User();
+                                    $user = $user->getData();
+
+                                    while ($row = $user->fetch_assoc()) {
+                                    ?>
+                                        <option value="<?= $row['user_id'] ?>"><?php echo $row['username'] ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -127,15 +139,16 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                             </div>
                             <div class="form-group">
                                 <label>Deksripsi Survey</label>
-                                <textarea class="form-control" name="deskripsi_survey" rows="3" placeholder="Blablalabslablab"><?= $data['survey_deskripsi'] ?></textarea>
+                                <textarea class="form-control" name="deskripsi_survey" rows="3"><?= $data['survey_deskripsi'] ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Survey Perlu diganti!!!</label>
-                                <!-- Perlu implementasi!! -->
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <label for="datetimepicker">Choose a date</label>
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                        <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" value="<?= $data['survey_tanggal'] ?>" />
+                                        <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,9 +159,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                         </form>
                     </div>
                 </div>
-
             <?php } else { ?>
-
                 <?php
                 if ($status == 'sukses') {
                     echo '<div class="alert alert-success">
@@ -156,7 +167,6 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>';
                 }
                 ?>
-
                 <table class="table table-sm table-bordered">
                     <thead>
                         <tr>
@@ -208,50 +218,32 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
         <div class="card-footer">
             Footer
         </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-
-    <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="plugins/jquery-validation/additional-methods.min.js"></script>
-    <script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
-
-
-    <script>
-        $(document).ready(function() { // maksud nya adl ketika dokumen sudah siap (html telah d render oleh browser) maka jalankan fungsi berikut ini
-
-            $('#form-tambah').validate({
-                rules: {
-                    kode_soal: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 10
-                    },
-                    nama_soal: {
-                        required: true,
-                        minlength: 5,
-                        maxlength: 255
-                    }
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-
-        });
-    </script>
 </section>
+
+<!-- Tempus Dominus Bootstrap 4 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- jQuery Validate -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_id.min.js"></script>
+
+
+</section>
+
+<script>
+    document.getElementById('form-tambah').addEventListener("submit", function(event) {
+        console.log("apalah");
+    });
+</script>
+
+<script>
+    $(function() {
+        $('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: 'id'
+        });
+    });
+</script>

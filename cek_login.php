@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['username'] = $result['username'];
         $_SESSION['nama'] = $result['nama'];
         $_SESSION['user_id'] = $result['user_id'];
+        $_SESSION['role'] = $_POST['jenis_login'];
         header('Location: index.php');
     }
     exit();

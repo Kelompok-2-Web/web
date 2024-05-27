@@ -8,8 +8,8 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
@@ -39,6 +39,17 @@
 
         <form action="cek_login.php" method="post">
           <div class="input-group mb-3">
+            <!-- <label for="jenis_login">Masuk sebagai siapa</label> -->
+            <select class="custom-select rounded-1" name="jenis_login" required>
+              <option value="">Masuk sebagai siapa?</option>
+              <option value="alumni">Alumni</option>
+              <option value="dosen">Dosen</option>
+              <option value="industri">Industri</option>
+              <option value="orang_tua">Orang Tua</option>
+              <option value="tendik">Tendik</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
             <input type="username" class="form-control" placeholder="Username" name="username">
             <div class="input-group-append">
               <div class="input-group-text">
@@ -57,22 +68,12 @@
           <div class="row">
             <div class="col-8">
             </div>
-            <!-- /.col -->
             <div class="col-4">
               <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             </div>
-            <!-- /.col -->
           </div>
         </form>
 
-        <!-- /.social-auth-links -->
-
-        <!-- <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
-      </p> -->
       </div>
       <!-- /.card-body -->
     </div>

@@ -6,7 +6,10 @@ $act = $_GET['act'];
 if ($act == 'simpan') {
    echo '<pre>';
    $data = [
-      'soal_id' => $_POST['soal_id'],
+      'survey_id' => $_POST['survey_id'],
+      'kategori_id' => $_POST['kategori_id'],
+      'no_urut' => $_POST['no_urut'],
+      'soal_jenis' => $_POST['soal_jenis'],
       'soal_nama' => $_POST['soal_nama']
    ];
 
@@ -18,7 +21,10 @@ if ($act == 'simpan') {
    $id = $_GET['id'];
 
    $data = [
-      'soal_id' => $_POST['soal_id'],
+      'survey_id' => $_POST['survey_id'],
+      'kategori_id' => $_POST['kategori_id'],
+      'no_urut' => $_POST['no_urut'],
+      'soal_jenis' => $_POST['soal_jenis'],
       'soal_nama' => $_POST['soal_nama']
    ];
 

@@ -16,7 +16,7 @@ if ($act == 'simpan') {
    $insert = new mSurvey();
    $insert->insertData($data);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil ditambah');
+   header('location: ?pages=survey&status=sukses&message=Data berhasil ditambah');
 } elseif ($act == 'edit') {
    $id = $_GET['id'];
 
@@ -32,12 +32,12 @@ if ($act == 'simpan') {
    $update = new mSurvey();
    $update->updateData($id, $data);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil diedit');
+   header('location: ?pages=survey&status=sukses&message=Data berhasil diedit');
 } elseif ($act == 'hapus') {
    $id = $_GET['id'];
 
    $hapus = new mSurvey();
    $hapus->deleteData($id);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil dihapus');
+   header('location: ?pages=survey&status=sukses&message=Data berhasil dihapus');
 }
