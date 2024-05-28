@@ -59,7 +59,7 @@ class mKategori
 
     public function deleteData($id)
     {
-        // query untuk delete data yang sudah dibuat
+        // query untuk delete data
         $query = $this->db->prepare("delete from {$this->table} where kategori_id = ?");
 
         // binding parameter ke query
