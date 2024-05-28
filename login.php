@@ -18,7 +18,6 @@
 
 <body class="hold-transition login-page">
   <div class="login-box">
-
     <?php
     if (isset($_GET['pesan'])) {
     ?>
@@ -39,7 +38,6 @@
 
         <form action="cek_login.php" method="post">
           <div class="input-group mb-3">
-            <!-- <label for="jenis_login">Masuk sebagai siapa</label> -->
             <select class="custom-select rounded-1" name="jenis_login" required>
               <option value="">Masuk sebagai siapa?</option>
               <option value="admin">Admin</option>
@@ -50,15 +48,15 @@
               <option value="tendik">Tendik</option>
             </select>
           </div>
-          <div class="input-group mb-3">
-            <input type="username" class="form-control" placeholder="Username" name="username">
+          <div class="input-group mb-3" id="username-group" style="display: none;">
+            <input type="text" class="form-control" placeholder="Username" name="username">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3" id="password-group" style="display: none;">
             <input type="password" class="form-control" placeholder="Password" name="password">
             <div class="input-group-append">
               <div class="input-group-text">
@@ -87,6 +85,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('select[name="jenis_login"]').on('change', function() {
+        if (this.value === 'admin') {
+          $('#username-group').show();
+          $('#password-group').show();
+        } else {
+          $('#username-group').hide();
+          $('#password-group').hide();
+        }
+      });
+    });
+  </script>
 
 </body>
 
