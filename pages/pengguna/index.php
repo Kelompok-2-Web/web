@@ -1,6 +1,6 @@
 <?php
 include_once 'model/m_user_model.php';
-
+// ubah dari saya
 $status = isset($_GET['status']) ? $_GET['status'] : "";
 $message = isset($_GET['message']) ? $_GET['message'] : ""
 ?>
@@ -20,6 +20,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
 
 <!-- Main content -->
 <section class="content">
