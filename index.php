@@ -4,11 +4,14 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-if (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION['user_id'])) {
+ if (!empty($_SESSION['role']) && $_SESSION['role'] != 'admin') {
+  header("location:form.php");
+} elseif (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION['user_id'])) {
   header("location:login.php");
 }
 
 $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
+$menu = !empty($_GET['tipe']) ? explode('/', $_GET['tipe'])[0] : $menu;
 
 ?>
 <!DOCTYPE html>

@@ -12,9 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // Untuk peran selain admin, lewati validasi username dan password
     if ($jenis_login !== 'admin') {
-        $_SESSION['username'] = $jenis_login; // Menetapkan nama peran sebagai username untuk sesi
-        $_SESSION['nama'] = $jenis_login; // Atau menetapkan nama default
-        $_SESSION['user_id'] = 0; // Atau beberapa ID pengguna default
         $_SESSION['role'] = $jenis_login;
         header('Location: index.php');
     } else {

@@ -61,15 +61,60 @@
             </p>
           </a>
         </li>
-
         <li class="nav-item">
-          <a href="?pages=responden" class="nav-link <?php echo ($menu == 'responden') ? 'active' : '' ?>">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-comments"></i>
             <p>
               Responden
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=dosen" class="nav-link" <?php echo ($menu == 'dosen') ? 'active' : '' ?>>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=alumni" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Alumni</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=industri" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Industri</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=tendik" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tendik</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=mahasiswa" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mahasiswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&tipe=orang_tua" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orang Tua</p>
+              </a>
+            </li>
+          </ul>
         </li>
+        <!-- <li class="nav-item">
+          <a href="" class="nav-link ">
+            <i class="nav-icon fas fa-comments"></i>
+            <p>
+              Responden
+            </p>
+          </a>
+        </li> -->
 
         <li class="nav-item">
           <a href="?pages=jawaban" class="nav-link <?php echo ($menu == 'jawaban') ? 'active' : '' ?>">
