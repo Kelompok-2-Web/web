@@ -40,13 +40,12 @@
           <div class="input-group mb-3">
             <select class="custom-select rounded-1" name="jenis_login" required>
               <option value="">Masuk sebagai siapa?</option>
-              <option value="Admin">Admin</option>
-              <option value="Mahasiswa">Mahasiswa</option>
-              <option value="Alumni">Alumni</option>
-              <option value="Dosen">Dosen</option>
-              <option value="Industri">Industri</option>
-              <option value="Orang tua">Orang Tua</option>
-              <option value="Tendik">Tendik</option>
+              <option value="admin">Admin</option>
+              <option value="alumni">Alumni</option>
+              <option value="dosen">Dosen</option>
+              <option value="industri">Industri</option>
+              <option value="orang_tua">Orang Tua</option>
+              <option value="tendik">Tendik</option>
             </select>
           </div>
           <div class="input-group mb-3" id="username-group" style="display: none;">
