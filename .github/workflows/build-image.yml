@@ -3,7 +3,7 @@ name: Image Builder
 on:
   push:
     branches:
-      - nail
+      - main
 
 jobs:
 
