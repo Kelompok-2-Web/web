@@ -62,8 +62,10 @@ if (isset($_GET['survey_id'])) {
                             <div class="col-md">
                                 <form id="form-biodata">
                                     <input type="hidden" name="responden_tanggal" value="<?= date("Y-m-d") ?>">
+                                    <input type="hidden" name="responden_id" id="responden-id-biod">
                                     <input type="hidden" name="survey_id" value="<?= $_GET['survey_id'] ?>">
                                     <input type="hidden" name="jenis_survey" value="<?= $survey['survey_jenis'] ?>">
+
 
                                     <div class="card card-primary" id="card-biodata">
                                         <div class="card-header">
@@ -226,8 +228,10 @@ if (isset($_GET['survey_id'])) {
                                     </div>
                                 </form>
 
-                                <form id="form-survey">
-                                    <input type="hidden" name="responden_id" id="responden-id">
+                                <form id="form-survey" action="form_action.php" method="post">
+                                    <input type="hidden" name="responden_id" id="responden-id-surv">
+                                    <input type="hidden" name="jenis_survey" value="<?= $survey['survey_jenis'] ?>">
+                                    
                                     <div class="card" id="card-survey">
                                         <div class="card-header">
                                             <h3 class="card-title">Silahkan isi survey berikut</h3>
@@ -248,23 +252,23 @@ if (isset($_GET['survey_id'])) {
                                                         <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
                                                         <br>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId1" name="<?= $row['soal_id'] ?>_skor1" value="1" />
+                                                            <input type="radio" id="someRadioId1" name="<?= $row['soal_id'] ?>_jawaban" value="1" />
                                                             <label for="someRadioId1">Skor 1</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId2" name="<?= $row['soal_id'] ?>_skor2" value="2"/>
+                                                            <input type="radio" id="someRadioId2" name="<?= $row['soal_id'] ?>_jawaban" value="2" />
                                                             <label for="someRadioId2">Skor 2</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId3" name="<?= $row['soal_id'] ?>_skor3" value="3"/>
+                                                            <input type="radio" id="someRadioId3" name="<?= $row['soal_id'] ?>_jawaban" value="3" />
                                                             <label for="someRadioId3">Skor 3</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId4" name="<?= $row['soal_id'] ?>_skor4" value="4"/>
+                                                            <input type="radio" id="someRadioId4" name="<?= $row['soal_id'] ?>_jawaban" value="4" />
                                                             <label for="someRadioId4">Skor 4</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId5" name="<?= $row['soal_id'] ?>_skor5" value="5"/>
+                                                            <input type="radio" id="someRadioId5" name="<?= $row['soal_id'] ?>_jawaban" value="5" />
                                                             <label for="someRadioId5">Skor 5</label>
                                                         </div>
                                                     </div>
@@ -274,7 +278,7 @@ if (isset($_GET['survey_id'])) {
                                                     <div class="form-group">
                                                         <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
                                                         <br>
-                                                        <textarea class="form-control" rows="3" name="<?= $row['soal_id'] ?>_essay" placeholder="Masukkan jawaban anda"></textarea>
+                                                        <textarea class="form-control" rows="3" name="<?= $row['soal_id'] ?>_jawaban" placeholder="Masukkan jawaban anda"></textarea>
                                                     </div>
                                             <?php
                                                 }
@@ -339,7 +343,9 @@ if (isset($_GET['survey_id'])) {
                     type: "POST",
                     data: $('#form-biodata').serialize(),
                     success: function(resp) {
-                        $('#responden-id').val(resp.responden_id)
+                        console.log(resp)
+                        $('#responden-id-biod').val(resp.responden_id)
+                        $('#responden-id-surv').val(resp.responden_id)
                     }
                 })
             })

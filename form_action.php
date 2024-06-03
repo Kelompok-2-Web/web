@@ -19,7 +19,7 @@ if (isset($_POST['responden_tanggal']) && isset($_POST['jenis_survey'])) {
             'responden_prodi' => $_POST['responden_prodi'],
             'responden_email' => $_POST['responden_email'],
             'responden_hp' => $_POST['responden_hp'],
-            'tahun_lulus' => $_POST['tahub_lulus']
+            'tahun_lulus' => $_POST['tahun_lulus']
         ];
 
         $responden = new tRespondenAlumni();
@@ -98,7 +98,12 @@ if (isset($_POST['responden_tanggal']) && isset($_POST['jenis_survey'])) {
         $responden = new tRespondenTendik();
     }
 
-    $ret['responden_id'] = $responden->insertData($data);
+    if (isset($_POST['responden_id']) && $_POST['responden_id'] != null) {
+        $responden->updateData($_POST['responden_id'], $data);
+        $ret['responden_id'] = $_POST['responden_id'];
+    } else {
+        $ret['responden_id'] = $responden->insertData($data);
+    }
 
     header('Content-type: application/json');
     echo json_encode($ret);
@@ -106,10 +111,73 @@ if (isset($_POST['responden_tanggal']) && isset($_POST['jenis_survey'])) {
     exit();
 }
 
-if (isset($_POST['responden_id'])) {
-    
-    foreach ($_POST as $key => $value) {
-        if ($key != 'responden_id') {
-        }
+if (isset($_POST['responden_id']) && isset($_POST['jenis_survey'])) {
+
+    $data = [];
+
+    if ($_POST['jenis_survey'] === 'alumni') {
+        include_once "model/jawaban/t_jawaban_alumni.php";
+
+        $data += [
+            'responden_alumni_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanAlumni();
+    } elseif ($_POST['jenis_survey'] === 'dosen') {
+        include_once "model/jawaban/t_jawaban_dosen.php";
+
+        $data += [
+            'responden_dosen_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanDosen();
+    } elseif ($_POST['jenis_survey'] === 'industri') {
+        include_once "model/jawaban/t_jawaban_industri.php";
+
+        $data += [
+            'responden_industri_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanIndustri();
+    } elseif ($_POST['jenis_survey'] === 'mahasiswa') {
+        include_once "model/jawaban/t_jawaban_mahasiswa.php";
+
+        $data += [
+            'responden_mahasiswa_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanMahasiswa();
+    } elseif ($_POST['jenis_survey'] === 'orang_tua') {
+        include_once "model/jawaban/t_jawaban_ortu.php";
+
+        $data += [
+            'responden_ortu_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanOrtu();
+    } elseif ($_POST['jenis_survey'] === 'tendik') {
+        include_once "model/jawaban/t_jawaban_tendik.php";
+
+        $data += [
+            'responden_tendik_id' => $_POST['responden_id']
+        ];
+
+        $jawaban = new tJawabanTendik();
     }
+
+    foreach ($_POST as $key => $value) {
+        if ($key == 'responden_id' || $key == 'jenis_survey') {
+            continue;
+        }
+
+        $soal_id = str_replace("_jawaban", "", $key);
+        $data += [
+            'soal_id' => $soal_id,
+            'jawaban' => $value
+        ];
+
+        $jawaban->insertData($data);
+    }
+
+    exit();
 }
