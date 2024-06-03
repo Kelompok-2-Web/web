@@ -1,3 +1,6 @@
+<?php
+$tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="." class="brand-link">
@@ -39,7 +42,7 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              <i class="right fas fa-angle-left"></i>
+              
             </p>
           </a>
         </li>
@@ -66,47 +69,48 @@
             <i class="nav-icon fas fa-comments"></i>
             <p>
               Responden
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="?pages=responden&tipe=dosen" class="nav-link" <?php echo ($menu == 'dosen') ? 'active' : '' ?>>
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dosen</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?pages=responden&tipe=alumni" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Alumni</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?pages=responden&tipe=industri" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Industri</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?pages=responden&tipe=tendik" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tendik</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?pages=responden&tipe=mahasiswa" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Mahasiswa</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?pages=responden&tipe=orang_tua" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Orang Tua</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+                <a href="?pages=responden&tipe=dosen" class="nav-link <?php echo ($tipe == 'dosen') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'dosen') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Dosen</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?pages=responden&tipe=alumni" class="nav-link <?php echo ($tipe == 'alumni') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'alumni') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Alumni</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?pages=responden&tipe=industri" class="nav-link <?php echo ($tipe == 'industri') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'industri') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Industri</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?pages=responden&tipe=tendik" class="nav-link <?php echo ($tipe == 'tendik') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'tendik') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Tendik</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?pages=responden&tipe=mahasiswa" class="nav-link <?php echo ($tipe == 'mahasiswa') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'mahasiswa') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Mahasiswa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?pages=responden&tipe=orang_tua" class="nav-link <?php echo ($tipe == 'orang_tua') ? 'active' : '' ?>">
+                <i class="far <?php echo ($tipe == 'orang_tua') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
+                  <p>Orang Tua</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         <!-- <li class="nav-item">
           <a href="" class="nav-link ">
             <i class="nav-icon fas fa-comments"></i>
