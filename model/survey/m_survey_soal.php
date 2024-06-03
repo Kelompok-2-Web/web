@@ -49,11 +49,11 @@ class mSurveySoal
     {
 
         // query untuk mengambil data berdasarkan id
-        $query = $this->db->prepare("select * from {$this->table} where survey_id = ?");
+        $query = $this->db->prepare("select * from {$this->table} where survey_id = ? order by no_urut asc");
 
         // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
         $query->bind_param('i', $id);
-        
+
         // eksekusi query
         $query->execute();
 
