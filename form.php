@@ -1,6 +1,7 @@
 <?php
+include_once "model/survey/m_survey.php";
+
 if (isset($_GET['survey_id'])) {
-    include_once "model/survey/m_survey.php";
     include_once "model/survey/m_survey_soal.php";
 
     $survey = new mSurvey();
@@ -384,19 +385,18 @@ if (isset($_GET['survey_id'])) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper,
+            body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer,
+            body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+                margin-left: 0px;
+            }
+        </style>
     </head>
 
     <body class="hold-transition sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
-            <!-- Navbar -->
-            <?php //include_once "layouts/header.php" 
-            ?>
-            <!-- /.navbar -->
-
-            <!-- Main Sidebar Container -->
-            <?php //include_once "layouts/sidebar.php" 
-            ?>
 
             <div class="content-wrapper">
                 <!-- Content Wrapper. Contains page content -->
@@ -466,13 +466,6 @@ if (isset($_GET['survey_id'])) {
                 </section>
             </div>
 
-            <?php //include_once "layouts/footer.php"
-            ?>
-
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
             <!-- /.control-sidebar -->
         </div>
         <!-- ./wrapper -->
