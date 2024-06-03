@@ -41,6 +41,7 @@
             <select class="custom-select rounded-1" name="jenis_login" required>
               <option value="">Masuk sebagai siapa?</option>
               <option value="admin">Admin</option>
+              <option value="mahasiswa">Mahasiswa</option>
               <option value="alumni">Alumni</option>
               <option value="dosen">Dosen</option>
               <option value="industri">Industri</option>

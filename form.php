@@ -361,6 +361,129 @@ if (isset($_GET['survey_id'])) {
     </html>
 <?php
 } else {
-    header("location: index.php");
-}
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $status = isset($_GET['status']) ? $_GET['status'] : "";
+    $message = isset($_GET['message']) ? $_GET['message'] : ""
+?>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AdminLTE 3 | <?php echo isset($_GET['pages']) ? ucfirst($_GET['pages']) : "Dashboard"  ?></title>
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body class="hold-transition sidebar-mini">
+        <!-- Site wrapper -->
+        <div class="wrapper">
+            <!-- Navbar -->
+            <?php //include_once "layouts/header.php" 
+            ?>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <?php //include_once "layouts/sidebar.php" 
+            ?>
+
+            <div class="content-wrapper">
+                <!-- Content Wrapper. Contains page content -->
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Survey <?php echo $_SESSION['role'] ?></h1>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Default box -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Survey Yang Tersedia</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Survey</th>
+                                        <th>Deskripsi Survey</th>
+                                        <th>Tanggal Survey</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $bank = new mSurvey();
+                                    $role = $_SESSION['role'];
+                                    $list = $bank->getDatabyRole($role);
+
+                                    $i = 1;
+                                    while ($row = $list->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $i ?></td>
+                                            <td><?= $row['survey_nama'] ?></td>
+                                            <td><?= $row['survey_deskripsi'] ?></td>
+                                            <td><?= $row['survey_tanggal'] ?></td>
+                                            <td>
+                                                <a title="kerjakan survey" href="?pages=form&survey_id=<?= $row['survey_id'] ?>">Kerjakan</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            Footer
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                    <!-- /.card -->
+
+                </section>
+            </div>
+
+            <?php //include_once "layouts/footer.php"
+            ?>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Bootstrap 4 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+
+    </body>
+
+    </html>
+<?php }
 ?>

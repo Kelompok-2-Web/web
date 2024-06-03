@@ -55,9 +55,11 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                             <div class="form-group">
                                 <label for="jenis_survey">Jenis Survey</label>
                                 <select class="custom-select rounded-1" name="jenis_survey">
-                                    <option value="pilgan">Pilgan</option>
+                                    <!-- <option value="pilgan">Pilgan</option>
                                     <option value="essay">Essay</option>
-                                    <option value="parameter">Parameter</option>
+                                    <option value="parameter">Parameter</option> -->
+                                    <option value="mahasiswa">Mahasiswa</option>
+                                    <option value="Dosen">Dosen</option>
                                 </select>
                             </div>
                             <div class="form-group">

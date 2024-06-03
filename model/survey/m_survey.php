@@ -45,6 +45,12 @@ class mSurvey
         return $query->get_result();
     }
 
+    public function getDatabyRole($role)
+    {
+        // query untuk mengambil data dari tabel bank_soal
+        return $this->db->query("select survey_id, survey_nama, survey_deskripsi, survey_tanggal from {$this->table} where survey_jenis LIKE '$role'");
+    }
+
     public function updateData($id, $data)
     {
         // query untuk update data
