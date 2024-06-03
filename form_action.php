@@ -171,13 +171,13 @@ if (isset($_POST['responden_id']) && isset($_POST['jenis_survey'])) {
         }
 
         $soal_id = str_replace("_jawaban", "", $key);
-        $data += [
-            'soal_id' => $soal_id,
-            'jawaban' => $value
-        ];
+        $data['soal_id'] = $soal_id;
+        $data['jawaban'] = $value;
 
         $jawaban->insertData($data);
     }
+
+    header("location: login.php?pesan=Terimakasih, anda berhasil mengisi survey");
 
     exit();
 }

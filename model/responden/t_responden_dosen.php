@@ -17,7 +17,7 @@ class tRespondenDosen
         $query = $this->db->prepare("insert into {$this->table} (survey_id, responden_tanggal, responden_nip, responden_nama, responden_unit) values(?,?,?,?,?)");
 
         // binding parameter ke query, "s" berarti string, "ss" berarti dua string
-        $query->bind_param('issss', $data['survey_id'], $data['responden_tanggal'], $data['responden_np'], $data['responden_nama'], $data['responden_unit']);
+        $query->bind_param('issss', $data['survey_id'], $data['responden_tanggal'], $data['responden_nip'], $data['responden_nama'], $data['responden_unit']);
 
         // eksekusi query untuk menyimpan ke database
         $query->execute();
@@ -53,7 +53,7 @@ class tRespondenDosen
         $query = $this->db->prepare("update {$this->table} set survey_id = ?, responden_tanggal = ?, responden_nip = ?, responden_nama = ?, responden_unit = ? where responden_dosen_id = ?");
 
         // binding parameter ke query
-        $query->bind_param('issssi', $data['survey_id'], $data['responden_tanggal'], $data['responden_np'], $data['responden_nama'], $data['responden_unit'], $id);
+        $query->bind_param('issssi', $data['survey_id'], $data['responden_tanggal'], $data['responden_nip'], $data['responden_nama'], $data['responden_unit'], $id);
 
         // eksekusi query
         $query->execute();

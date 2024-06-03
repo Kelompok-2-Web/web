@@ -231,7 +231,7 @@ if (isset($_GET['survey_id'])) {
                                 <form id="form-survey" action="form_action.php" method="post">
                                     <input type="hidden" name="responden_id" id="responden-id-surv">
                                     <input type="hidden" name="jenis_survey" value="<?= $survey['survey_jenis'] ?>">
-                                    
+
                                     <div class="card" id="card-survey">
                                         <div class="card-header">
                                             <h3 class="card-title">Silahkan isi survey berikut</h3>
@@ -252,24 +252,24 @@ if (isset($_GET['survey_id'])) {
                                                         <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
                                                         <br>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId1" name="<?= $row['soal_id'] ?>_jawaban" value="1" />
-                                                            <label for="someRadioId1">Skor 1</label>
+                                                            <input type="radio" id="someRadioId1<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="1" />
+                                                            <label for="someRadioId1<?= $row['soal_id'] ?>">Skor 1</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId2" name="<?= $row['soal_id'] ?>_jawaban" value="2" />
-                                                            <label for="someRadioId2">Skor 2</label>
+                                                            <input type="radio" id="someRadioId2<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="2" />
+                                                            <label for="someRadioId2<?= $row['soal_id'] ?>">Skor 2</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId3" name="<?= $row['soal_id'] ?>_jawaban" value="3" />
-                                                            <label for="someRadioId3">Skor 3</label>
+                                                            <input type="radio" id="someRadioId3<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="3" />
+                                                            <label for="someRadioId3<?= $row['soal_id'] ?>">Skor 3</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId4" name="<?= $row['soal_id'] ?>_jawaban" value="4" />
-                                                            <label for="someRadioId4">Skor 4</label>
+                                                            <input type="radio" id="someRadioId4<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="4" />
+                                                            <label for="someRadioId4<?= $row['soal_id'] ?>">Skor 4</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId5" name="<?= $row['soal_id'] ?>_jawaban" value="5" />
-                                                            <label for="someRadioId5">Skor 5</label>
+                                                            <input type="radio" id="someRadioId5<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="5" />
+                                                            <label for="someRadioId5<?= $row['soal_id'] ?>">Skor 5</label>
                                                         </div>
                                                     </div>
                                                 <?php
@@ -351,17 +351,7 @@ if (isset($_GET['survey_id'])) {
             })
 
             document.getElementById('form-survey').addEventListener('submit', function(e) {
-                e.preventDefault();
                 $('#card-survey').CardWidget('collapse')
-
-                $.ajax({
-                    url: "form_action.php",
-                    type: "POST",
-                    data: $('#form-survey').serialize(),
-                    success: function(resp) {
-                        window.location.href = "index.php"
-                    }
-                })
             })
         </script>
 
