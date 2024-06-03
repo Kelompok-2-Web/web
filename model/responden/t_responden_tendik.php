@@ -1,8 +1,8 @@
 <?php
-class tRespondenAlumni
+class tRespondenTendik
 {
     public $db;
-    protected $table = 't_responden_alumni';
+    protected $table = 't_responden_tendik';
 
     public function __construct()
     {
@@ -14,10 +14,10 @@ class tRespondenAlumni
     public function insertData($data)
     {
         // prepare statement untuk query insert
-        $query = $this->db->prepare("insert into {$this->table} (survey_id, responden_tanggal, responden_nim, responden_nama, responden_prodi, responden_email, responden_hp, tahun_lulus) values(?,?,?,?,?,?,?,?)");
+        $query = $this->db->prepare("insert into {$this->table} (survey_id, responden_tanggal, responden_nipeg, responden_nama, responden_unit) values (?,?,?,?,?)");
 
         // binding parameter ke query, "s" berarti string, "ss" berarti dua string
-        $query->bind_param('issssssi', $data['survey_id'], $data['responden_tanggal'], $data['responden_nim'], $data['responden_nama'], $data['responden_prodi'], $data['responden_email'], $data['responden_hp'], $data['tahun_lulus']);
+        $query->bind_param('issss', $data['survey_id'], $data['responden_tanggal'], $data['responden_nipeg'], $data['responden_nama'], $data['responden_unit']);
 
         // eksekusi query untuk menyimpan ke database
         $query->execute();
@@ -35,7 +35,7 @@ class tRespondenAlumni
     {
 
         // query untuk mengambil data berdasarkan id
-        $query = $this->db->prepare("select * from {$this->table} where responden_alumni_id = ?");
+        $query = $this->db->prepare("select * from {$this->table} where responden_tendik_id = ?");
 
         // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
         $query->bind_param('i', $id);
@@ -50,10 +50,10 @@ class tRespondenAlumni
     public function updateData($id, $data)
     {
         // query untuk update data
-        $query = $this->db->prepare("update {$this->table} set survey_id = ? , responden_tanggal = ?, responden_nim = ?, responden_nama = ?, responden_prodi = ?, responden_email = ?, responden_hp = ?, tahun_lulus = ? where responden_alumni_id = ?");
+        $query = $this->db->prepare("update {$this->table} set survey_id = ?, responden_tanggal = ?, responden_nipeg = ?, responden_nama = ?, responden_unit = ? where responden_tendik_id = ?");
 
         // binding parameter ke query
-        $query->bind_param('issssssii', $data['survey_id'], $data['responden_tanggal'], $data['responden_nim'], $data['responden_nama'], $data['responden_prodi'], $data['responden_email'], $data['responden_hp'], $data['tahun_lulus'], $id);
+        $query->bind_param('issssi', $data['survey_id'], $data['responden_tanggal'], $data['responden_nipeg'], $data['responden_nama'], $data['responden_unit'], $id);
 
         // eksekusi query
         $query->execute();
@@ -62,7 +62,7 @@ class tRespondenAlumni
     public function deleteData($id)
     {
         // query untuk delete data
-        $query = $this->db->prepare("delete from {$this->table} where responden_alumni_id = ?");
+        $query = $this->db->prepare("delete from {$this->table} where responden_tendik_id = ?");
 
         // binding parameter ke query
         $query->bind_param('i', $id);

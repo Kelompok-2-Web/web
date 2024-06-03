@@ -5,6 +5,11 @@ if (isset($_GET['survey_id'])) {
 
     $survey = new mSurvey();
     $survey = $survey->getDataById($_GET['survey_id'])->fetch_assoc();
+
+    if (!isset($survey)) {
+        echo "Survey tidak ditemukan";
+        exit();
+    }
 ?>
     <!DOCTYPE html>
     <html lang="en" style="height: auto;">
@@ -55,9 +60,10 @@ if (isset($_GET['survey_id'])) {
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md">
-                                <form action="form_action.php" method="POST" id="form-biodata">
-                                    <input type="hidden" name="responden_tanggal" id="responden-tanggal" value="<?= date("Y-m-d") ?>">
-                                    <input type="hidden" name="jenis_survey" id="jenis-survey" value="<?= $survey['survey_jenis'] ?>">
+                                <form id="form-biodata">
+                                    <input type="hidden" name="responden_tanggal" value="<?= date("Y-m-d") ?>">
+                                    <input type="hidden" name="survey_id" value="<?= $_GET['survey_id'] ?>">
+                                    <input type="hidden" name="jenis_survey" value="<?= $survey['survey_jenis'] ?>">
 
                                     <div class="card card-primary" id="card-biodata">
                                         <div class="card-header">
@@ -165,7 +171,7 @@ if (isset($_GET['survey_id'])) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputUmur">Umur</label>
-                                                    <input type="number" class="form-control" id="inputUmur" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    <input type="number" class="form-control" id="inputUmur" name="responden_umur" placeholder="Masukkan Nama" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputNoHP">No. HP</label>
@@ -220,7 +226,7 @@ if (isset($_GET['survey_id'])) {
                                     </div>
                                 </form>
 
-                                <form action="form_action.php" method="POST" id="form-survey">
+                                <form id="form-survey">
                                     <input type="hidden" name="responden_id" id="responden-id">
                                     <div class="card" id="card-survey">
                                         <div class="card-header">
@@ -242,23 +248,23 @@ if (isset($_GET['survey_id'])) {
                                                         <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
                                                         <br>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId1" name="<?= $row['soal_id'] ?>_skor1" />
+                                                            <input type="radio" id="someRadioId1" name="<?= $row['soal_id'] ?>_skor1" value="1" />
                                                             <label for="someRadioId1">Skor 1</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId2" name="<?= $row['soal_id'] ?>_skor2" />
+                                                            <input type="radio" id="someRadioId2" name="<?= $row['soal_id'] ?>_skor2" value="2"/>
                                                             <label for="someRadioId2">Skor 2</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId3" name="<?= $row['soal_id'] ?>_skor3" />
+                                                            <input type="radio" id="someRadioId3" name="<?= $row['soal_id'] ?>_skor3" value="3"/>
                                                             <label for="someRadioId3">Skor 3</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId4" name="<?= $row['soal_id'] ?>_skor4" />
+                                                            <input type="radio" id="someRadioId4" name="<?= $row['soal_id'] ?>_skor4" value="4"/>
                                                             <label for="someRadioId4">Skor 4</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId5" name="<?= $row['soal_id'] ?>_skor5" />
+                                                            <input type="radio" id="someRadioId5" name="<?= $row['soal_id'] ?>_skor5" value="5"/>
                                                             <label for="someRadioId5">Skor 5</label>
                                                         </div>
                                                     </div>
@@ -306,36 +312,48 @@ if (isset($_GET['survey_id'])) {
         <script>
             $('#card-survey').on('expanded.lte.cardwidget', function(e) {
                 $('#card-survey').addClass('card-primary')
-                $('#card-biodata').CardWidget('collapse')
             })
 
             $('#card-survey').on('collapsed.lte.cardwidget', function(e) {
                 $('#card-survey').removeClass('card-primary')
-                $('#card-biodata').CardWidget('expand')
             })
-
-            $('#card-survey').CardWidget('collapse')
 
             $('#card-biodata').on('expanded.lte.cardwidget', function(e) {
                 $('#card-biodata').addClass('card-primary')
-                $('#card-survey').CardWidget('collapse')
             })
 
             $('#card-biodata').on('collapsed.lte.cardwidget', function(e) {
                 $('#card-biodata').removeClass('card-primary')
-                $('#card-survey').CardWidget('expand')
             })
 
+            $('#card-survey').CardWidget('collapse')
+
             document.getElementById('form-biodata').addEventListener('submit', function(e) {
-                $('#toggle-biodata').removeClass('invisible')
                 e.preventDefault();
+                $('#toggle-biodata').removeClass('invisible')
                 $('#card-biodata').CardWidget('collapse')
+                $('#card-survey').CardWidget('expand')
+
                 $.ajax({
-                    url: "",
+                    url: "form_action.php",
                     type: "POST",
                     data: $('#form-biodata').serialize(),
                     success: function(resp) {
-                        document.getElementById('responden-id').value = resp.responden_id
+                        $('#responden-id').val(resp.responden_id)
+                    }
+                })
+            })
+
+            document.getElementById('form-survey').addEventListener('submit', function(e) {
+                e.preventDefault();
+                $('#card-survey').CardWidget('collapse')
+
+                $.ajax({
+                    url: "form_action.php",
+                    type: "POST",
+                    data: $('#form-survey').serialize(),
+                    success: function(resp) {
+                        window.location.href = "index.php"
                     }
                 })
             })
