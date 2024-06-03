@@ -21,7 +21,7 @@
     <?php
     if (isset($_GET['pesan'])) {
     ?>
-      <div class="alert alert-danger">
+      <div class="alert <?= strpos($_GET['pesan'], "berhasil") ? 'alert-success' : 'alert-danger' ?>">
         <?php echo $_GET['pesan'] ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
       </div>
