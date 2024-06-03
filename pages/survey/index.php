@@ -55,11 +55,12 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                             <div class="form-group">
                                 <label for="jenis_survey">Jenis Survey</label>
                                 <select class="custom-select rounded-1" name="jenis_survey">
-                                    <!-- <option value="pilgan">Pilgan</option>
-                                    <option value="essay">Essay</option>
-                                    <option value="parameter">Parameter</option> -->
                                     <option value="mahasiswa">Mahasiswa</option>
-                                    <option value="Dosen">Dosen</option>
+                                    <option value="dosen">Dosen</option>
+                                    <option value="industri">Industri</option>
+                                    <option value="alumni">Alumni</option>
+                                    <option value="orang_tua">Orang Tua</option>
+                                    <option value="tendik">Tendik</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -106,16 +107,17 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                         <form action="?pages=survey/survey_action.php&act=edit&id=<?= $id ?>" method="post" id="form-tambah">
                             <div class="form-group">
                                 <label for="jenis_survey">Jenis Survey</label>
-                                <!-- Perlu implementasi!! -->
                                 <select class="custom-select rounded-1" name="jenis_survey">
-                                    <option value="pilgan" <?= $data['survey_jenis'] == 'pilgan' ? 'selected' : '' ?>>Pilgan</option>
-                                    <option value="essay" <?= $data['survey_jenis'] == 'essay' ? 'selected' : '' ?>>Essay</option>
-                                    <option value="parameter" <?= $data['survey_jenis'] == 'parameter' ? 'selected' : '' ?>>Parameter</option>
+                                    <option value="mahasiswa" <?= $data['survey_jenis'] == 'mahasiswa' ? 'selected' : '' ?>>Mahasiswa</option>
+                                    <option value="dosen" <?= $data['survey_jenis'] == 'dosen' ? 'selected' : '' ?>>Dosen</option>
+                                    <option value="industri" <?= $data['survey_jenis'] == 'industri' ? 'selected' : '' ?>>Industri</option>
+                                    <option value="alumni" <?= $data['survey_jenis'] == 'alumni' ? 'selected' : '' ?>>Alumni</option>
+                                    <option value="orang_tua" <?= $data['survey_jenis'] == 'orang_tua' ? 'selected' : '' ?>>Orang Tua</option>
+                                    <option value="tendik" <?= $data['survey_jenis'] == 'tendik' ? 'selected' : '' ?>>Tendik</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="user_id">Pembuat</label>
-                                <!-- Perlu implementasi!! -->
                                 <select class="custom-select rounded-1" name="user_id">
                                     <?php
                                     $user = new User();
@@ -200,7 +202,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <td><a href="?pages=pengguna&user_id=<?= $row['user_id'] ?>"><?= $user_row['username'] ?></a></td>
                                 <td><?= $row['survey_jenis'] ?></td>
                                 <td><?= $row['survey_kode'] ?></td>
-                                <td><?= $row['survey_nama'] ?></td>
+                                <td><a href="form.php?survey_id=<?= $row['survey_id'] ?>"><?= $row['survey_nama'] ?></td>
                                 <td><?= $row['survey_deskripsi'] ?></td>
                                 <td><?= $row['survey_tanggal'] ?></td>
                                 <td>

@@ -31,7 +31,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
       <h3 class="card-title"></h3>
 
       <div class="card-tools">
-        <!-- <a href="?pages=soal&act=tambah" class="btn btn-sm btn-primary">Tambah Soal</a> -->
+        <a href="?pages=soal&act=tambah" class="btn btn-sm btn-primary">Tambah Soal</a>
       </div>
     </div>
     <div class="card-body">

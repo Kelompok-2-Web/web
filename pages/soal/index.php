@@ -226,39 +226,13 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
     <!-- /.card-footer-->
   </div>
   <!-- /.card -->
-
-  <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-  <script src="plugins/jquery-validation/additional-methods.min.js"></script>
-  <script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
-
-
-  <script>
-    $(document).ready(function() {
-      // $('#form-tambah').validate({
-      //   rules: {
-      //     kode_soal: {
-      //       required: true,
-      //       minlength: 3,
-      //       maxlength: 10
-      //     },
-      //     nama_soal: {
-      //       required: true,
-      //       minlength: 5,
-      //       maxlength: 255
-      //     }
-      //   },
-      //   errorElement: 'span',
-      //   errorPlacement: function(error, element) {
-      //     error.addClass('invalid-feedback');
-      //     element.closest('.form-group').append(error);
-      //   },
-      //   highlight: function(element, errorClass, validClass) {
-      //     $(element).addClass('is-invalid');
-      //   },
-      //   unhighlight: function(element, errorClass, validClass) {
-      //     $(element).removeClass('is-invalid');
-      //   }
-      // });
-    });
-  </script>
 </section>
+
+<!-- jQuery Validate -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_id.min.js"></script>
+
+<script>
+  $(document).ready(function() {});
+</script>
