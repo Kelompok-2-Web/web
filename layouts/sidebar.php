@@ -1,3 +1,6 @@
+<?php
+$tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="." class="brand-link">
