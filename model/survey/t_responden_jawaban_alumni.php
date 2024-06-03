@@ -1,8 +1,8 @@
 <?php
-class mSurveySoal
+class tJawabanAlumni
 {
     public $db;
-    protected $table = 'm_survey_soal';
+    protected $table = 't_jawaban_alumni';
 
     public function __construct()
     {
@@ -45,15 +45,15 @@ class mSurveySoal
         return $query->get_result();
     }
 
-    public function getDataBySurveyId($id)
+    public function getMaxId()
     {
 
         // query untuk mengambil data berdasarkan id
-        $query = $this->db->prepare("select * from {$this->table} where survey_id = ?");
+        $query = $this->db->prepare("SELECT MAX(responden_alumni_id) AS alumni_id FROM {$this->table}");
 
         // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
-        $query->bind_param('i', $id);
-        
+        //$query->bind_param('i', $id);
+
         // eksekusi query
         $query->execute();
 

@@ -1,8 +1,8 @@
 <?php
-class mSurveySoal
+class tRespondenAlumni
 {
     public $db;
-    protected $table = 'm_survey_soal';
+    protected $table = 't_responden_alumni';
 
     public function __construct()
     {
@@ -14,10 +14,11 @@ class mSurveySoal
     public function insertData($data)
     {
         // prepare statement untuk query insert
-        $query = $this->db->prepare("insert into {$this->table} (survey_id, kategori_id, no_urut, soal_jenis, soal_nama) values(?,?,?,?,?)");
+        $query = $this->db->prepare("insert into {$this->table} (responden_alumni_id, survey_id, responden_tanggal, responden_nim, responden_nama, responden_prodi, responden_email, responden_hp, tahun_lulus) values(?,?,GETDATE(),?,?,?,?,?,?)");
 
+        $responId = $this->getMaxId();
         // binding parameter ke query, "s" berarti string, "ss" berarti dua string
-        $query->bind_param('iiiss', $data['survey_id'], $data['kategori_id'], $data['no_urut'], $data['soal_jenis'], $data['soal_nama']);
+        $query->bind_param('iisssssi', $responId, $data['survey_id'], $data['responden_nim'], $data['responden_prodi'], $data['responden_email'], $data['responden_hp'], $data['tahun_lulus']);
 
         // eksekusi query untuk menyimpan ke database
         $query->execute();
@@ -45,17 +46,26 @@ class mSurveySoal
         return $query->get_result();
     }
 
-    public function getDataBySurveyId($id)
+    public function getMaxId()
     {
 
         // query untuk mengambil data berdasarkan id
-        $query = $this->db->prepare("select * from {$this->table} where survey_id = ?");
+        $query = $this->db->prepare("SELECT IFNULL(MAX(responden_alumni_id), 0) + 1 AS responden_id_next FROM {$this->table}");
 
         // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
-        $query->bind_param('i', $id);
-        
+        //$query->bind_param('i', $id);
+
         // eksekusi query
         $query->execute();
+
+        // $result = $query->get_result();
+        // $id = 1;
+        // if ($result->num_rows > 0) {
+        //     $row = $result->fetch_assoc();
+        //     //return $row['responden_id_next'];
+        //     $id = $row['responden_id_next'];
+        // }
+        // return $id;
 
         // ambil hasil query
         return $query->get_result();
