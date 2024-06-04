@@ -25,16 +25,6 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 
 <!-- Main content -->
 <section class="content">
-  <!-- Default box -->
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"></h3>
-
-      <div class="card-tools">
-        <a href="?pages=soal&act=tambah" class="btn btn-sm btn-primary">Tambah Soal</a>
-      </div>
-    </div>
-    <div class="card-body">
 
       <?php
       $act = isset($_GET['act']) ? $_GET['act'] : '';
