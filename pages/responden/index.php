@@ -227,6 +227,19 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
           </tbody>
         </table>
       <?php } ?>
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+      <div class="card-tools">
+        <!-- <a href="?pages=soal&act=tambah" class="btn btn-sm btn-primary">Tambah Soal</a> -->
+      </div>
+    </div>
+    <div class="card-body">
+
+    <?php echo $_GET['sub_menu']; ?> 
+
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
@@ -271,3 +284,12 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
     });
   </script>
 </section>
+
+<!-- jQuery Validate -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_id.min.js"></script>
+
+<script>
+  $(document).ready(function() {});
+</script>

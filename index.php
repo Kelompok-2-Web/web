@@ -9,6 +9,7 @@ if (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION[
 }
 
 $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
+$sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
 
 ?>
 <!DOCTYPE html>
@@ -26,6 +27,8 @@ $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- CSS BOX -->
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -66,7 +69,79 @@ $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
 
         <!-- Main content -->
         <section class="content">
-
+          <!-- box responden -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2 col-6">
+                <!-- small card -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Dosen</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Mahasiswa</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Alumni</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-graduate"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Orang Tua</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-friends"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-primary">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Tendik</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-gear"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-secondary">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Industri</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-city"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
