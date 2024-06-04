@@ -219,7 +219,9 @@ if (isset($_GET['survey_id'])) {
 
             if (isset($_GET['survey_id'])) {
               $list = $bank->getDataBySurveyId($_GET['survey_id']);
-            } else {
+            } elseif(isset($_GET['soal_id'])){
+              $list = $bank->getDataById($_GET['soal_id']);
+            }else {
               $list = $bank->getData();
             }
 
