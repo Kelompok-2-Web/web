@@ -254,23 +254,19 @@ if (isset($_GET['survey_id'])) {
                                                         <br>
                                                         <div class="icheck-primary d-inline">
                                                             <input type="radio" id="someRadioId1<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="1" />
-                                                            <label for="someRadioId1<?= $row['soal_id'] ?>">Skor 1</label>
+                                                            <label for="someRadioId1<?= $row['soal_id'] ?>">Sangat Tidak Puas</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
                                                             <input type="radio" id="someRadioId2<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="2" />
-                                                            <label for="someRadioId2<?= $row['soal_id'] ?>">Skor 2</label>
+                                                            <label for="someRadioId2<?= $row['soal_id'] ?>">Tidak Puas</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
                                                             <input type="radio" id="someRadioId3<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="3" />
-                                                            <label for="someRadioId3<?= $row['soal_id'] ?>">Skor 3</label>
+                                                            <label for="someRadioId3<?= $row['soal_id'] ?>">Puas</label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
                                                             <input type="radio" id="someRadioId4<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="4" />
-                                                            <label for="someRadioId4<?= $row['soal_id'] ?>">Skor 4</label>
-                                                        </div>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId5<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="5" />
-                                                            <label for="someRadioId5<?= $row['soal_id'] ?>">Skor 5</label>
+                                                            <label for="someRadioId4<?= $row['soal_id'] ?>">Sangat Puas</label>
                                                         </div>
                                                     </div>
                                                 <?php
