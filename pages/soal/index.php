@@ -5,13 +5,19 @@ include_once 'model/survey/m_kategori.php';
 
 $status = isset($_GET['status']) ? $_GET['status'] : "";
 $message = isset($_GET['message']) ? $_GET['message'] : "";
+
+$survey = new mSurvey();
+$desk = null;
+if (isset($_GET['survey_id'])) {
+  $desk = $survey->getDataById($_GET['survey_id'])->fetch_assoc();
+}
 ?>
 
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Soal Survey</h1>
+        <h1>Soal Survey <?php echo isset($desk) ? " - " . $desk['survey_nama'] . " " . $desk['survey_kode'] : ''  ?></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -31,7 +37,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
       <h3 class="card-title"></h3>
 
       <div class="card-tools">
-        <a href="?pages=soal&act=tambah" class="btn btn-sm btn-primary">Tambah Soal</a>
+        <a href="?pages=soal&act=tambah<?= isset($_GET['survey_id']) ? '&survey_id=' . $_GET['survey_id'] : '' ?>" class="btn btn-sm btn-primary">Tambah Soal</a>
       </div>
     </div>
     <div class="card-body">
@@ -51,13 +57,17 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
             <form action="?pages=soal/soal_action.php&act=simpan" method="post" id="form-tambah">
               <div class="form-group">
                 <label for="survey_id">Survey</label>
-                <select class="custom-select rounded-1" name="survey_id">
+                <?php if (isset($_GET['survey_id'])) {
+                ?>
+                  <input type="hidden" name="survey_id" value="<?= $_GET['survey_id'] ?>">
+                <?php
+                } ?>
+                <select class="custom-select rounded-1" name="survey_id" <?= isset($_GET['survey_id']) ? 'disabled' : '' ?>>
                   <?php
-                  $survey = new mSurvey();
                   $result = $survey->getData();
                   while ($row = $result->fetch_assoc()) {
                   ?>
-                    <option value="<?= $row['survey_id'] ?>"><?php echo $row['survey_nama'] ?></option>
+                    <option value="<?= $row['survey_id'] ?>" <?= isset($_GET['survey_id']) && $_GET['survey_id'] === $row['survey_id'] ? 'selected' : '' ?>><?php echo $row['survey_nama'] ?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -80,9 +90,8 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
               <div class="form-group">
                 <label for="soal_jenis">Soal Jenis</label>
                 <select class="custom-select rounded-1" name="soal_jenis">
-                  <option value="pilgan">Pilgan</option>
+                  <option value="rating">Rating</option>
                   <option value="essay">Essay</option>
-                  <option value="parameter">Parameter</option>
                 </select>
               </div>
               <div class="form-group">
@@ -118,7 +127,6 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                 <label for="survey_id">Survey</label>
                 <select class="custom-select rounded-1" name="survey_id">
                   <?php
-                  $survey = new mSurvey();
                   $result = $survey->getData();
                   while ($row = $result->fetch_assoc()) {
                   ?>
@@ -145,9 +153,8 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
               <div class="form-group">
                 <label for="soal_jenis">Soal Jenis</label>
                 <select class="custom-select rounded-1" name="soal_jenis">
-                  <option value="pilgan" <?= $data['soal_jenis'] == 'pilgan' ? 'selected' : '' ?>>Pilgan</option>
+                  <option value="rating" <?= $data['soal_jenis'] == 'rating' ? 'selected' : '' ?>>Rating</option>
                   <option value="essay" <?= $data['soal_jenis'] == 'essay' ? 'selected' : '' ?>>Essay</option>
-                  <option value="parameter" <?= $data['soal_jenis'] == 'parameter' ? 'selected' : '' ?>>Parameter</option>
                 </select>
               </div>
               <div class="form-group">
@@ -188,19 +195,18 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
           <tbody>
             <?php
             $bank = new mSurveySoal();
-            $survey = new mSurvey();
             $kategori = new mKategori();
 
-            if (isset($_GET['soal_id'])) {
-              $list = $bank->getDataById($_GET['soal_id']);
+            if (isset($_GET['survey_id'])) {
+              $list = $bank->getDataBySurveyId($_GET['survey_id']);
             } else {
               $list = $bank->getData();
             }
 
             $i = 1;
             while ($row = $list->fetch_assoc()) {
-              $surveyData = $survey->getDataById($row['survey_id'])->fetch_assoc();
 
+              $surveyData = $survey->getDataById($row['survey_id'])->fetch_assoc();
               $kategoriData = $kategori->getDataById($row['kategori_id'])->fetch_assoc();
             ?>
               <tr>
@@ -209,7 +215,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                 <td><a href="?pages=survey&survey_id=<?php echo $row['survey_id'] ?>"><?php echo $surveyData['survey_nama'] ?></a></td>
                 <td><a href="?pages=kategori&kategori_id=<?php echo $row['kategori_id'] ?>"><?php echo $kategoriData['kategori_nama'] ?></a></td>
                 <td><?php echo $row['no_urut'] ?></td>
-                <td><?php echo $row['soal_jenis'] ?></td>
+                <td><?php echo ucfirst($row['soal_jenis']) ?></td>
                 <td><?php echo $row['soal_nama'] ?></td>
                 <td>
                   <a title="Edit Data" href="?pages=soal&act=edit&id=<?php echo $row['soal_id'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

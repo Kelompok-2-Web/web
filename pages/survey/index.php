@@ -201,7 +201,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <td><?= $i ?></td>
                                 <td><?= $row['survey_id'] ?></td>
                                 <td><a href="?pages=pengguna&user_id=<?= $row['user_id'] ?>"><?= $user_row['username'] ?></a></td>
-                                <td><?= $row['survey_jenis'] ?></td>
+                                <td><?= ucfirst($row['survey_jenis']) ?></td>
                                 <td><?= $row['survey_kode'] ?></td>
                                 <td><a href="form.php?survey_id=<?= $row['survey_id'] ?>"><?= $row['survey_nama'] ?></td>
                                 <td><?= $row['survey_deskripsi'] ?></td>
@@ -209,6 +209,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <td>
                                     <a title="Edit Data" href="?pages=survey&act=edit&id=<?= $row['survey_id'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                     <a onclick="return confirm('Apakah anda yakin menghapus data ini?')" title="Hapus Data" href="?pages=soal/soal_action.php&act=hapus&id=<?= $row['survey_id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a title="Tambah Soal" href="?pages=soal&survey_id=<?= $row['survey_id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
                                 </td>
                             </tr>
                         <?php
