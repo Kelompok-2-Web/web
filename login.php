@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: url('BG1.jpg') no-repeat center center fixed; background-size: cover;">
   <div class="login-box">
     <?php
     if (isset($_GET['pesan'])) {
@@ -38,10 +38,12 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="index2.html" class="h1"><b>Web</b> Survey</a>
+        <a href="index2.html" class="h1">
+          <img src="Logo.png" style="height: 70px; vertical-align: middle; margin-right:0px;">
+          <b>Web</b> Survey</a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Silahkan Isi</p>
+        <p class="login-box-msg">Silahkan Pilih: </p>
 
         <form action="cek_login.php" method="post">
           <div class="input-group mb-3">
