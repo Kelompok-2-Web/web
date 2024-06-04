@@ -45,6 +45,22 @@ class mSurveySoal
         return $query->get_result();
     }
 
+    public function getDataBySurveyId($id)
+    {
+
+        // query untuk mengambil data berdasarkan id
+        $query = $this->db->prepare("select * from {$this->table} where survey_id = ? order by no_urut asc");
+
+        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
+        $query->bind_param('i', $id);
+
+        // eksekusi query
+        $query->execute();
+
+        // ambil hasil query
+        return $query->get_result();
+    }
+
     public function updateData($id, $data)
     {
         // query untuk update data
@@ -55,6 +71,8 @@ class mSurveySoal
 
         // eksekusi query
         $query->execute();
+
+        // aksdda
     }
 
     public function deleteData($id)

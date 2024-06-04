@@ -9,6 +9,7 @@ if (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION[
 }
 
 $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
+$sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
 
 ?>
 <!DOCTYPE html>

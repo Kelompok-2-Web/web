@@ -21,16 +21,6 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
     </div>
 
     <!-- SidebarSearch Form -->
-    <div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -42,7 +32,6 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              
             </p>
           </a>
         </li>
@@ -64,69 +53,101 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
             </p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+
+        <li class="nav-item has-treeview <?php echo ($menu == 'responden') ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link <?php echo ($menu == 'responden') ? 'active' : '' ?>">
             <i class="nav-icon fas fa-comments"></i>
             <p>
               Responden
-              <i class="right fas fa-angle-left"></i>
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="?pages=responden&tipe=dosen" class="nav-link <?php echo ($tipe == 'dosen') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'dosen') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Dosen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?pages=responden&tipe=alumni" class="nav-link <?php echo ($tipe == 'alumni') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'alumni') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Alumni</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?pages=responden&tipe=industri" class="nav-link <?php echo ($tipe == 'industri') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'industri') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Industri</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?pages=responden&tipe=tendik" class="nav-link <?php echo ($tipe == 'tendik') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'tendik') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Tendik</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?pages=responden&tipe=mahasiswa" class="nav-link <?php echo ($tipe == 'mahasiswa') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'mahasiswa') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Mahasiswa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?pages=responden&tipe=orang_tua" class="nav-link <?php echo ($tipe == 'orang_tua') ? 'active' : '' ?>">
-                <i class="far <?php echo ($tipe == 'orang_tua') ? 'fa-circle-dot text-primary' : 'fa-circle' ?> nav-icon"></i>
-                  <p>Orang Tua</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        <!-- <li class="nav-item">
-          <a href="" class="nav-link ">
-            <i class="nav-icon fas fa-comments"></i>
-            <p>
-              Responden
-            </p>
-          </a>
-        </li> -->
+              <a href="?pages=responden&sub_menu=responden_dosen" class="nav-link <?php echo ($sub_menu == 'responden_dosen') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&sub_menu=responden_alumni" class="nav-link <?php echo ($sub_menu == 'responden_alumni') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Alumni</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&sub_menu=responden_industri" class="nav-link <?php echo ($sub_menu == 'responden_industri') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Industri</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&sub_menu=responden_tendik" class="nav-link <?php echo ($sub_menu == 'responden_tendik') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tendik</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&sub_menu=responden_mahasiswa" class="nav-link <?php echo ($sub_menu == 'responden_mahasiswa') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mahasiswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=responden&sub_menu=responden_orang_tua" class="nav-link <?php echo ($sub_menu == 'responden_orang_tua') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orang Tua</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        <li class="nav-item">
-          <a href="?pages=jawaban" class="nav-link <?php echo ($menu == 'jawaban') ? 'active' : '' ?>">
+        <li class="nav-item has-treeview <?php echo ($menu == 'jawaban') ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link <?php echo ($menu == 'jawaban') ? 'active' : '' ?>">
             <i class="nav-icon fas fa-voicemail"></i>
             <p>
               Jawaban
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_dosen" class="nav-link <?php echo ($sub_menu == 'jawaban_dosen') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_alumni" class="nav-link <?php echo ($sub_menu == 'jawaban_alumni') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Alumni</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_industri" class="nav-link <?php echo ($sub_menu == 'jawaban_industri') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Industri</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_tendik" class="nav-link <?php echo ($sub_menu == 'jawaban_tendik') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tendik</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_mahasiswa" class="nav-link <?php echo ($sub_menu == 'jawaban_mahasiswa') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mahasiswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?pages=jawaban&sub_menu=jawaban_orang_tua" class="nav-link <?php echo ($sub_menu == 'jawaban_orang_tua') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orang Tua</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li class="nav-item">
@@ -156,66 +177,6 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
           </a>
         </li>
 
-        <!-- <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Layout Options
-                  <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../layout/top-nav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/top-nav-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation + Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/boxed.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Boxed</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-topnav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Navbar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-footer.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Footer</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Collapsed Sidebar</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

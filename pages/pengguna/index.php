@@ -1,6 +1,6 @@
 <?php
 include_once 'model/m_user_model.php';
-
+// ubah dari saya
 $status = isset($_GET['status']) ? $_GET['status'] : "";
 $message = isset($_GET['message']) ? $_GET['message'] : ""
 ?>
@@ -20,6 +20,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
 
 <!-- Main content -->
 <section class="content">
@@ -162,13 +163,11 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
     <!-- /.card -->
 </section>
 
-<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
-
+<!-- jQuery Validate -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_id.min.js"></script>
 
 <script>
-    $(document).ready(function() { // maksud nya adl ketika dokumen sudah siap (html telah d render oleh browser) maka jalankan fungsi berikut ini
-
-    });
+    $(document).ready(function() {});
 </script>

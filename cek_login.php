@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Untuk peran selain admin, lewati validasi username dan password
     if ($jenis_login !== 'admin') {
         $_SESSION['role'] = $jenis_login;
-        header('Location: index.php');
+        header('Location: form.php');
     } else {
         $user = new User();
         $result = $user->loginUser($username, $password);

@@ -28,7 +28,7 @@
     <?php
     if (isset($_GET['pesan'])) {
     ?>
-      <div class="alert alert-danger">
+      <div class="alert <?= strpos($_GET['pesan'], "berhasil") ? 'alert-success' : 'alert-danger' ?>">
         <?php echo $_GET['pesan'] ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
       </div>
@@ -76,7 +76,7 @@
             <div class="col-8">
             </div>
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block" id="btn-tipe">Sign In</button>
             </div>
           </div>
         </form>
@@ -98,9 +98,11 @@
     $(document).ready(function() {
       $('select[name="jenis_login"]').on('change', function() {
         if (this.value === 'admin') {
+          $('#btn-tipe').html("Sign In")
           $('#username-group').show();
           $('#password-group').show();
         } else {
+          $('#btn-tipe').html("Isi Survey")
           $('#username-group').hide();
           $('#password-group').hide();
         }
