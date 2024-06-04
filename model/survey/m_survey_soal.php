@@ -71,6 +71,8 @@ class mSurveySoal
 
         // eksekusi query
         $query->execute();
+
+        // aksdda
     }
 
     public function deleteData($id)

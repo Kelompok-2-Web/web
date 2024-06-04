@@ -25,6 +25,208 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 
 <!-- Main content -->
 <section class="content">
+
+      <?php
+      $act = isset($_GET['act']) ? $_GET['act'] : '';
+
+      if ($act == 'tambah') {
+      ?>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tambah Soal Survey</h3>
+            <div class="card-tools"></div>
+          </div>
+          <div class="card-body">
+            <form action="?pages=soal/soal_action.php&act=simpan" method="post" id="form-tambah">
+              <div class="form-group">
+                <label for="survey_id">Survey</label>
+                <select class="custom-select rounded-1" name="survey_id">
+                  <?php
+                  $survey = new mSurvey();
+                  $result = $survey->getData();
+                  while ($row = $result->fetch_assoc()) {
+                  ?>
+                    <option value="<?= $row['survey_id'] ?>"><?php echo $row['survey_nama'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="kategori_id">Kategori</label>
+                <select class="custom-select rounded-1" name="kategori_id">
+                  <?php
+                  $kategori = new mKategori();
+                  $result = $kategori->getData();
+                  while ($row = $result->fetch_assoc()) {
+                  ?>
+                    <option value="<?= $row['kategori_id'] ?>"><?php echo $row['kategori_nama'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="no_urut">No Urut</label>
+                <input required type="number" name="no_urut" id="no_urut" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="soal_jenis">Soal Jenis</label>
+                <select class="custom-select rounded-1" name="soal_jenis">
+                  <option value="essay">Essay</option>
+                  <option value="parameter">Parameter</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="soal_nama">Soal</label>
+                <input type="text" name="soal_nama" id="soal_nama" class="form-control">
+                  </div>
+                  <div class="form_group">
+                <label for="soal_nama">Sangat Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Tidak Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Sangat Tidak Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+              </div>
+              <div class="form-group">
+                <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>
+                <a href="?pages=soal" class="btn btn-warning">Kembali</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      <?php } else if ($act == 'edit') { ?>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Edit Soal Survey</h3>
+            <div class="card-tools"></div>
+          </div>
+          <div class="card-body">
+
+            <?php
+            $id = $_GET['id'];
+
+            $soal = new mSurveySoal();
+            $data = $soal->getDataById($id)->fetch_assoc();
+            ?>
+
+            <form action="?pages=soal/soal_action.php&act=edit&id=<?= $id ?>" method="post" id="form-tambah">
+              <div class="form-group">
+                <label for="survey_id">Survey</label>
+                <select class="custom-select rounded-1" name="survey_id">
+                  <?php
+                  $survey = new mSurvey();
+                  $result = $survey->getData();
+                  while ($row = $result->fetch_assoc()) {
+                  ?>
+                    <option value="<?= $row['survey_id'] ?>" <?= $data['survey_id'] == $row['survey_id'] ? 'selected' : '' ?>><?php echo $row['survey_nama'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="kategori_id">Kategori</label>
+                <select class="custom-select rounded-1" name="kategori_id">
+                  <?php
+                  $kategori = new mKategori();
+                  $result = $kategori->getData();
+                  while ($row = $result->fetch_assoc()) {
+                  ?>
+                    <option value="<?= $row['kategori_id'] ?>" <?= $data['kategori_id'] == $row['kategori_id'] ? 'selected' : '' ?>><?php echo $row['kategori_nama'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="no_urut">No Urut</label>
+                <input required type="number" name="no_urut" id="no_urut" class="form-control" value="<?php echo $data['no_urut'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="soal_jenis">Soal Jenis</label>
+                <select class="custom-select rounded-1" name="soal_jenis">
+                  <option value="pilgan" <?= $data['soal_jenis'] == 'pilgan' ? 'selected' : '' ?>>Pilgan</option>
+                  <option value="essay" <?= $data['soal_jenis'] == 'essay' ? 'selected' : '' ?>>Essay</option>
+                  <option value="parameter" <?= $data['soal_jenis'] == 'parameter' ? 'selected' : '' ?>>Parameter</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="soal_nama">Soal</label>
+                <input required type="text" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+              </div>
+              <div class="form_group">
+                <label for="soal_nama">Sangat Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Tidak Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+                <label for="soal_nama">Sangat Tidak Puas</label>
+                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
+              </div>
+              <div class="form-group">
+                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                <a href="?pages=soal.php" class="btn btn-warning">Kembali</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      <?php } else { ?>
+
+        <?php
+        if ($status == 'sukses') {
+          echo '<div class="alert alert-success">
+                      ' . $message . '
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>';
+        }
+        ?>
+
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Soal Id</th>
+              <th>Survey</th>
+              <th>Kategori</th>
+              <th>Nomor Urut</th>
+              <th>Soal Jenis</th>
+              <th>Soal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $bank = new mSurveySoal();
+            $list = $bank->getData();
+
+            $i = 1;
+            while ($row = $list->fetch_assoc()) {
+              $survey = new mSurvey();
+              $surveyData = $survey->getDataById($row['survey_id'])->fetch_assoc();
+
+              $kategori = new mKategori();
+              $kategoriData = $kategori->getDataById($row['kategori_id'])->fetch_assoc();
+            ?>
+              <tr>
+                <td><?php echo $i ?></td>
+                <td><?php echo $row['soal_id'] ?></td>
+                <td><a href="?pages=survey&survey_id=<?php echo $row['survey_id'] ?>"><?php echo $surveyData['survey_nama'] ?></a></td>
+                <td><a href="?pages=kategori&kategori_id=<?php echo $row['kategori_id'] ?>"><?php echo $kategoriData['kategori_nama'] ?></a></td>
+                <td><?php echo $row['no_urut'] ?></td>
+                <td><?php echo $row['soal_jenis'] ?></td>
+                <td><?php echo $row['soal_nama'] ?></td>
+                <td>
+                  <a title="Edit Data" href="?pages=soal&act=edit&id=<?php echo $row['soal_id'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                  <a onclick="return confirm('Apakah anda yakin menghapus data ini?')" title="Hapus Data" href="?pages=soal/soal_action.php&act=hapus&id=<?php echo $row['soal_id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            <?php
+              $i++;
+            }
+            ?>
+          </tbody>
+        </table>
+      <?php } ?>
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
@@ -47,6 +249,40 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
   </div>
   <!-- /.card -->
 
+  <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
+
+
+  <script>
+    $(document).ready(function() {
+      // $('#form-tambah').validate({
+      //   rules: {
+      //     kode_soal: {
+      //       required: true,
+      //       minlength: 3,
+      //       maxlength: 10
+      //     },
+      //     nama_soal: {
+      //       required: true,
+      //       minlength: 5,
+      //       maxlength: 255
+      //     }
+      //   },
+      //   errorElement: 'span',
+      //   errorPlacement: function(error, element) {
+      //     error.addClass('invalid-feedback');
+      //     element.closest('.form-group').append(error);
+      //   },
+      //   highlight: function(element, errorClass, validClass) {
+      //     $(element).addClass('is-invalid');
+      //   },
+      //   unhighlight: function(element, errorClass, validClass) {
+      //     $(element).removeClass('is-invalid');
+      //   }
+      // });
+    });
+  </script>
 </section>
 
 <!-- jQuery Validate -->
