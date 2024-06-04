@@ -188,14 +188,19 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
           <tbody>
             <?php
             $bank = new mSurveySoal();
-            $list = $bank->getData();
+            $survey = new mSurvey();
+            $kategori = new mKategori();
+
+            if (isset($_GET['soal_id'])) {
+              $list = $bank->getDataById($_GET['soal_id']);
+            } else {
+              $list = $bank->getData();
+            }
 
             $i = 1;
             while ($row = $list->fetch_assoc()) {
-              $survey = new mSurvey();
               $surveyData = $survey->getDataById($row['survey_id'])->fetch_assoc();
 
-              $kategori = new mKategori();
               $kategoriData = $kategori->getDataById($row['kategori_id'])->fetch_assoc();
             ?>
               <tr>

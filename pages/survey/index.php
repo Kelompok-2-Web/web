@@ -76,7 +76,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <textarea class="form-control" name="deskripsi_survey" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="datetimepicker">Choose a date</label>
+                                <label for="datetimepicker">Pilih tanggal</label>
                                 <div class="input-group date" id="datetimepicker" data-target-input="nearest">
                                     <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" />
                                     <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
@@ -130,10 +130,6 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="user_id">Kode Survey</label>
-                                <input required type="text" name="user_id" id="user_id" class="form-control" value="<?= $data['user_id'] ?>">
-                            </div>
-                            <div class="form-group">
                                 <label for="kode_survey">Kode Survey</label>
                                 <input required type="text" name="kode_survey" id="kode_survey" class="form-control" value="<?= $data['survey_kode'] ?>">
                             </div>
@@ -146,7 +142,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <textarea class="form-control" name="deskripsi_survey" rows="3"><?= $data['survey_deskripsi'] ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="datetimepicker">Choose a date</label>
+                                <label for="datetimepicker">Pilih tanggal</label>
                                 <div class="form-group">
                                     <div class="input-group date" id="datetimepicker" data-target-input="nearest">
                                         <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" value="<?= $data['survey_tanggal'] ?>" />
@@ -189,7 +185,12 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                         <?php
                         $bank = new mSurvey();
                         $user = new User();
-                        $list = $bank->getData();
+
+                        if (isset($_GET['survey_id'])) {
+                            $list = $bank->getDataById($_GET['survey_id']);
+                        } else {
+                            $list = $bank->getData();
+                        }
 
                         $i = 1;
                         while ($row = $list->fetch_assoc()) {
