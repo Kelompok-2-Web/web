@@ -1,0 +1,505 @@
+[1mdiff --git a/model/jawaban/t_jawaban_alumni.php b/model/jawaban/t_jawaban_alumni.php[m
+[1mindex c7e62eb..5557475 100644[m
+[1m--- a/model/jawaban/t_jawaban_alumni.php[m
+[1m+++ b/model/jawaban/t_jawaban_alumni.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanAlumni[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where responden_alumni_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/jawaban/t_jawaban_dosen.php b/model/jawaban/t_jawaban_dosen.php[m
+[1mindex 21183cb..ab02555 100644[m
+[1m--- a/model/jawaban/t_jawaban_dosen.php[m
+[1m+++ b/model/jawaban/t_jawaban_dosen.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanDosen[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where responden_dosen_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/jawaban/t_jawaban_industri.php b/model/jawaban/t_jawaban_industri.php[m
+[1mindex 9e0c808..609dd60 100644[m
+[1m--- a/model/jawaban/t_jawaban_industri.php[m
+[1m+++ b/model/jawaban/t_jawaban_industri.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanIndustri[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where reponden_industri_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/jawaban/t_jawaban_mahasiswa.php b/model/jawaban/t_jawaban_mahasiswa.php[m
+[1mindex 72e1a81..c9df23f 100644[m
+[1m--- a/model/jawaban/t_jawaban_mahasiswa.php[m
+[1m+++ b/model/jawaban/t_jawaban_mahasiswa.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanMahasiswa[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where responden_mahasiswa_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/jawaban/t_jawaban_ortu.php b/model/jawaban/t_jawaban_ortu.php[m
+[1mindex 4927207..8c49c4c 100644[m
+[1m--- a/model/jawaban/t_jawaban_ortu.php[m
+[1m+++ b/model/jawaban/t_jawaban_ortu.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanOrtu[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where responden_ortu_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/jawaban/t_jawaban_tendik.php b/model/jawaban/t_jawaban_tendik.php[m
+[1mindex 093e221..4b738fa 100644[m
+[1m--- a/model/jawaban/t_jawaban_tendik.php[m
+[1m+++ b/model/jawaban/t_jawaban_tendik.php[m
+[36m@@ -47,6 +47,22 @@[m [mclass tJawabanTendik[m
+         return $query->get_result();[m
+     }[m
+ [m
+[32m+[m[32m    public function getDataByRespondenId($id)[m
+[32m+[m[32m    {[m
+[32m+[m
+[32m+[m[32m        // query untuk mengambil data berdasarkan id[m
+[32m+[m[32m        $query = $this->db->prepare("select * from {$this->table} where responden_tendik_id = ?");[m
+[32m+[m
+[32m+[m[32m        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection[m
+[32m+[m[32m        $query->bind_param('i', $id);[m
+[32m+[m
+[32m+[m[32m        // eksekusi query[m
+[32m+[m[32m        $query->execute();[m
+[32m+[m
+[32m+[m[32m        // ambil hasil query[m
+[32m+[m[32m        return $query->get_result();[m
+[32m+[m[32m    }[m
+[32m+[m
+     public function updateData($id, $data)[m
+     {[m
+         // query untuk update data[m
+[1mdiff --git a/model/koneksi.php b/model/koneksi.php[m
+[1mindex 7cd9f89..29d5958 100644[m
+[1m--- a/model/koneksi.php[m
+[1m+++ b/model/koneksi.php[m
+[36m@@ -1,13 +1,26 @@[m
+ <?php[m
+[31m-$username = 'budak';[m
+[31m-$password = 'korporat123';[m
+[31m-$database = 'aplikasi_survey_polinema';[m
+[32m+[m[32m// $username = 'budak';[m
+[32m+[m[32m// $password = 'korporat123';[m
+[32m+[m[32m// $database = 'aplikasi_survey_polinema';[m
+[32m+[m[32m// try {[m
+[32m+[m[32m//     $db = new mysqli(getenv('DATABASE_HOST') != null ? getenv('DATABASE_HOST') : 'muddy-wave-72367.pktriot.net:22189', $username, $password, $database);[m
+[32m+[m[32m//     //$db = new mysqli('172.29.145.89', $username, $password, $database);[m
+[32m+[m[32m//     if ($db->connect_error) {[m
+[32m+[m[32m//         die('Connection failed: ' . $db->connect_error);[m
+[32m+[m[32m//     }[m
+[32m+[m[32m// } catch (Exception $e) {[m
+[32m+[m[32m//     die($e->getMessage());[m
+[32m+[m[32m// }[m
+[32m+[m
+[32m+[m[32m$username = 'root';[m
+[32m+[m[32m$password = 'Zanuaraldi0101';[m
+[32m+[m[32m$database = 'projek_dewe';[m
+ try {[m
+[31m-    // $db = new mysqli(getenv('DATABASE_HOST') != null ? getenv('DATABASE_HOST') : 'muddy-wave-72367.pktriot.net:22189', $username, $password, $database);[m
+[31m-    $db = new mysqli('172.29.145.89', $username, $password, $database);[m
+[32m+[m[32m    $db = new mysqli('localhost', $username, $password, $database);[m
+[32m+[m[32m    //$db = new mysqli('172.29.145.89', $username, $password, $database);[m
+     if ($db->connect_error) {[m
+         die('Connection failed: ' . $db->connect_error);[m
+     }[m
+ } catch (Exception $e) {[m
+     die($e->getMessage());[m
+[31m-}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/pages/pengguna/index.php b/pages/pengguna/index.php[m
+[1mindex 8a92c6c..350f78d 100644[m
+[1m--- a/pages/pengguna/index.php[m
+[1m+++ b/pages/pengguna/index.php[m
+[36m@@ -1,6 +1,6 @@[m
+ <?php[m
+ include_once 'model/m_user_model.php';[m
+[31m-// ubah dari saya[m
+[32m+[m
+ $status = isset($_GET['status']) ? $_GET['status'] : "";[m
+ $message = isset($_GET['message']) ? $_GET['message'] : ""[m
+ ?>[m
+[1mdiff --git a/pages/responden/index.php b/pages/responden/index.php[m
+[1mindex 75d0fd7..e6ab3a7 100644[m
+[1m--- a/pages/responden/index.php[m
+[1m+++ b/pages/responden/index.php[m
+[36m@@ -1,7 +1,10 @@[m
+ <?php[m
+ include_once 'model/survey/m_survey_soal.php';[m
+ include_once 'model/survey/m_survey.php';[m
+[31m-include_once 'model/survey/m_kategori.php';[m
+[32m+[m[32m$pkg = array_merge(glob('model/responden/*.*'), glob('model/jawaban/*.*'));[m
+[32m+[m[32mforeach ($pkg as $file) {[m
+[32m+[m[32m  include_once($file);[m
+[32m+[m[32m}[m
+ [m
+ $status = isset($_GET['status']) ? $_GET['status'] : "";[m
+ $message = isset($_GET['message']) ? $_GET['message'] : "";[m
+[36m@@ -11,12 +14,12 @@[m [m$message = isset($_GET['message']) ? $_GET['message'] : "";[m
+   <div class="container-fluid">[m
+     <div class="row mb-2">[m
+       <div class="col-sm-6">[m
+[31m-        <h1>Soal Survey</h1>[m
+[32m+[m[32m        <h1><?php echo $_GET['sub_menu'] ?></h1>[m
+       </div>[m
+       <div class="col-sm-6">[m
+         <ol class="breadcrumb float-sm-right">[m
+           <li class="breadcrumb-item"><a href="#">Home</a></li>[m
+[31m-          <li class="breadcrumb-item active">Soal Survey</li>[m
+[32m+[m[32m          <li class="breadcrumb-item active">Responden</li>[m
+         </ol>[m
+       </div>[m
+     </div>[m
+[36m@@ -24,83 +27,403 @@[m [m$message = isset($_GET['message']) ? $_GET['message'] : "";[m
+ </section>[m
+ [m
+ <!-- Main content -->[m
+[32m+[m[32m<!-- Tempus Dominus -->[m
+[32m+[m[32m<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />[m
+ <section class="content">[m
+[32m+[m[32m  <!-- Default box -->[m
+[32m+[m[32m  <div class="card">[m
+[32m+[m[32m    <div class="card-header">[m
+[32m+[m[32m      <h3 class="card-title"></h3>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m    <div class="card-body">[m
+ [m
+       <?php[m
+[31m-      $act = isset($_GET['act']) ? $_GET['act'] : '';[m
+[32m+[m[32m      $act = (isset($_GET['act'])) ? $_GET['act'] : '';[m
+ [m
+       if ($act == 'tambah') {[m
+[31m-      ?>[m
+[32m+[m[32m        $role = (isset($_GET['role'])) ? $_GET['role'] : '';[m
+ [m
+[31m-        <div class="card">[m
+[31m-          <div class="card-header">[m
+[31m-            <h3 class="card-title">Tambah Soal Survey</h3>[m
+[31m-            <div class="card-tools"></div>[m
+[32m+[m[32m        if ($role == 'dosen') { ?>[m
+[32m+[m[32m          <div class="card">[m
+[32m+[m[32m            <!-- <div class="card-header">[m
+[32m+[m[32m              <h3 class="card-title">Tambah Responden Dosenssss</h3>[m
+[32m+[m[32m              <div class="card-tools"></div>[m
+[32m+[m[32m            </div> -->[m
+[32m+[m[32m            <div class="card-body">[m
+[32m+[m[32m              <form action="?pages=responden/responden_action.php&act=simpan&role=dosen" method="post" id="form-tambah">[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="survey_id">Survey ID</label>[m
+[32m+[m[32m                  <input required type="number" name="survey_id" id="survey_id" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="datetimepicker">Pilih tanggal</label>[m
+[32m+[m[32m                  <div class="input-group date" id="datetimepicker" data-target-input="nearest">[m
+[32m+[m[32m                    <input type="text" name="responden_tanggal" id="responden_tanggal" class="form-control datetimepicker-input" data-target="#datetimepicker" />[m
+[32m+[m[32m                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">[m
+[32m+[m[32m                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                  </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nip">Responen NIP</label>[m
+[32m+[m[32m                  <input required type="number" name="responden_nip" id="responden_nip" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nama">Responen Nama</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_nama" id="responden_nama" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_unit">Responen Unit</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_unit" id="responden_unit" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>[m
+[32m+[m[32m                  <a href="?pages=responden&sub_menu=responden_dosen" class="btn btn-warning">Kembali</a>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m              </form>[m
+[32m+[m[32m            </div>[m
+           </div>[m
+[31m-          <div class="card-body">[m
+[31m-            <form action="?pages=soal/soal_action.php&act=simpan" method="post" id="form-tambah">[m
+[31m-              <div class="form-group">[m
+[31m-                <label for="survey_id">Survey</label>[m
+[31m-                <select class="custom-select rounded-1" name="survey_id">[m
+[31m-                  <?php[m
+[31m-                  $survey = new mSurvey();[m
+[31m-                  $result = $survey->getData();[m
+[31m-                  while ($row = $result->fetch_assoc()) {[m
+[31m-                  ?>[m
+[31m-                    <option value="<?= $row['survey_id'] ?>"><?php echo $row['survey_nama'] ?></option>[m
+[31m-                  <?php } ?>[m
+[31m-                </select>[m
+[31m-              </div>[m
+[31m-              <div class="form-group">[m
+[31m-                <label for="kategori_id">Kategori</label>[m
+[31m-                <select class="custom-select rounded-1" name="kategori_id">[m
+[31m-                  <?php[m
+[31m-                  $kategori = new mKategori();[m
+[31m-                  $result = $kategori->getData();[m
+[31m-                  while ($row = $result->fetch_assoc()) {[m
+[31m-                  ?>[m
+[31m-                    <option value="<?= $row['kategori_id'] ?>"><?php echo $row['kategori_nama'] ?></option>[m
+[31m-                  <?php } ?>[m
+[31m-                </select>[m
+[31m-              </div>[m
+[31m-              <div class="form-group">[m
+[31m-                <label for="no_urut">No Urut</label>[m
+[31m-                <input required type="number" name="no_urut" id="no_urut" class="form-control">[m
+[31m-              </div>[m
+[31m-              <div class="form-group">[m
+[31m-                <label for="soal_jenis">Soal Jenis</label>[m
+[31m-                <select class="custom-select rounded-1" name="soal_jenis">[m
+[31m-                  <option value="essay">Essay</option>[m
+[31m-                  <option value="parameter">Parameter</option>[m
+[31m-                </select>[m
+[31m-              </div>[m
+[31m-              <div class="form-group">[m
+[31m-                <label for="soal_nama">Soal</label>[m
+[31m-                <input type="text" name="soal_nama" id="soal_nama" class="form-control">[m
+[32m+[m[32m        <?php } else if ($role == 'alumni') { ?>[m
+[32m+[m[32m          <div class="card">[m
+[32m+[m[32m            <!-- <div class="card-header">[m
+[32m+[m[32m              <h3 class="card-title">Tambah Alumni</h3>[m
+[32m+[m[32m              <div class="card-tools"></div>[m
+[32m+[m[32m            </div> -->[m
+[32m+[m[32m            <div class="card-body">[m
+[32m+[m[32m              <form action="?pages=responden/responden_action.php&act=simpan&role=alumni" method="post" id="form-tambah">[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="survey_id">Survey ID</label>[m
+[32m+[m[32m                  <input required type="number" name="survey_id" id="survey_id" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="datetimepicker">Pilih tanggal</label>[m
+[32m+[m[32m                  <div class="input-group date" id="datetimepicker" data-target-input="nearest">[m
+[32m+[m[32m                    <input type="text" name="responden_tanggal" class="form-control datetimepicker-input" data-target="#datetimepicker" />[m
+[32m+[m[32m                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">[m
+[32m+[m[32m                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>[m
+[32m+[m[32m                    </div>[m
+                   </div>[m
+[31m-                  <div class="form_group">[m
+[31m-                <label for="soal_nama">Sangat Puas</label>[m
+[31m-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">[m
+[31m-                <label for="soal_nama">Puas</label>[m
+[31m-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">[m
+[31m-                <label for="soal_nama">Tidak Puas</label>[m
+[31m-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">[m
+[31m-                <label for="soal_nama">Sangat Tidak Puas</label>[m
+[31m-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">[m
+[31m-              </div>[m
+[31m-              <div class="form-group">[m
+[31m-                <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>[m
+[31m-                <a href="?pages=soal" class="btn btn-warning">Kembali</a>[m
+[31m-              </div>[m
+[31m-            </form>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nim">Responen NIM</label>[m
+[32m+[m[32m                  <input required type="number" name="responden_nim" id="responden_nim" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nama">Responen Nama</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_nama" id="responden_nama" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_prodi">Responen Prodi</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_prodi" id="responden_prodi" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_email">Responen Email</label>[m
+[32m+[m[32m                  <input required type="email" name="responden_email" id="responden_email" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_hp">Responen Hp</label>[m
+[32m+[m[32m                  <input required type="number" name="responden_hp" id="responden_hp" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="tahun_lulus">Tahun Lulus</label>[m
+[32m+[m[32m                  <input required type="number" name="tahun_lulus" id="tahun_lulus" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>[m
+[32m+[m[32m                  <a href="?pages=responden&sub_menu=responden_alumni" class="btn btn-warning">Kembali</a>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m              </form>[m
+[32m+[m[32m            </div>[m
+           </div>[m
+[31m-        </div>[m
+[32m+[m[32m        <?php } else if ($role == 'industri') { ?>[m
+[32m+[m[32m          <div class="card">[m
+[32m+[m[32m            <!-- <div class="card-header">[m
+[32m+[m[32m              <h3 class="card-title">Tambah Alumni</h3>[m
+[32m+[m[32m              <div class="card-tools"></div>[m
+[32m+[m[32m            </div> -->[m
+[32m+[m[32m            <div class="card-body">[m
+[32m+[m[32m              <form action="?pages=responden/responden_action.php&act=simpan&role=industri" method="post" id="form-tambah">[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="survey_id">Survey ID</label>[m
+[32m+[m[32m                  <input required type="number" name="survey_id" id="survey_id" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="datetimepicker">Pilih tanggal</label>[m
+[32m+[m[32m                  <div class="input-group date" id="datetimepicker" data-target-input="nearest">[m
+[32m+[m[32m                    <input type="text" name="responden_tanggal" class="form-control datetimepicker-input" data-target="#datetimepicker" />[m
+[32m+[m[32m                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">[m
+[32m+[m[32m                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                  </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nama">Responen Nama</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_nama" id="responden_nama" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_jabatan">Responen Jabatan</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_jabatan" id="responden_jabatan" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_perusahaan">Responen Perusahaan</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_perusahaan" id="responden_perusahaan" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_email">Responen Email</label>[m
+[32m+[m[32m                  <input required type="email" name="responden_email" id="responden_email" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_hp">Responen Hp</label>[m
+[32m+[m[32m                  <input required type="number" name="responden_hp" id="responden_hp" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_kota">Responden Kota</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_kota" id="responden_kota" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>[m
+[32m+[m[32m                  <a href="?pages=responden&sub_menu=responden_industri" class="btn btn-warning">Kembali</a>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m              </form>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m        <?php } else if ($role == 'tendik') { ?>[m
+[32m+[m[32m          <div class="card">[m
+[32m+[m[32m            <!-- <div class="card-header">[m
+[32m+[m[32m              <h3 class="card-title">Tambah Alumni</h3>[m
+[32m+[m[32m              <div class="card-tools"></div>[m
+[32m+[m[32m            </div> -->[m
+[32m+[m[32m            <div class="card-body">[m
+[32m+[m[32m              <form action="?pages=responden/responden_action.php&act=simpan&role=tendik" method="post" id="form-tambah">[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="survey_id">Survey ID</label>[m
+[32m+[m[32m                  <input required type="number" name="survey_id" id="survey_id" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="datetimepicker">Pilih tanggal</label>[m
+[32m+[m[32m                  <div class="input-group date" id="datetimepicker" data-target-input="nearest">[m
+[32m+[m[32m                    <input type="text" name="responden_tanggal" class="form-control datetimepicker-input" data-target="#datetimepicker" />[m
+[32m+[m[32m                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">[m
+[32m+[m[32m                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                  </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nopeg">Responen Nopeg</label>[m
+[32m+[m[32m                  <input required type="number" name="responden_nopeg" id="responden_nopeg" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_nama">Responen Nama</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_nama" id="responden_nama" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <label for="responden_unit">Responen Unit</label>[m
+[32m+[m[32m                  <input required type="text" name="responden_unit" id="responden_unit" class="form-control">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="form-group">[m
+[32m+[m[32m                  <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>[m
+[32m+[m[32m          
