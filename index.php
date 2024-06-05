@@ -32,7 +32,7 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed" style="height: 100%;">
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
@@ -71,13 +71,18 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
         <section class="content">
           <!-- box responden -->
           <div class="container-fluid">
+            <?php
+            include_once "model/m_dashboard.php";
+
+            $obj = new mDashboard();
+            ?>
             <div class="row">
               <div class="col-md-2 col-6">
                 <!-- small card -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Dosen</p>
+                    <h3><?php echo $obj->jumlahRespondenDosen()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Dosen</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-tie"></i>
@@ -87,8 +92,8 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
               <div class="col-md-2 col-6">
                 <div class="small-box bg-success">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Mahasiswa</p>
+                    <h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Mahasiswa</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user"></i>
@@ -98,8 +103,8 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
               <div class="col-md-2 col-6">
                 <div class="small-box bg-warning">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Alumni</p>
+                    <h3><?php echo $obj->jumlahRespondenAlumni()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Alumni</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-graduate"></i>
@@ -109,8 +114,8 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
               <div class="col-md-2 col-6">
                 <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Orang Tua</p>
+                    <h3><?php echo $obj->jumlahRespondenOrtu()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Orang Tua</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-friends"></i>
@@ -120,8 +125,8 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
               <div class="col-md-2 col-6">
                 <div class="small-box bg-primary">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Tendik</p>
+                    <h3><?php echo $obj->jumlahRespondenTendik()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Tendik</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-gear"></i>
@@ -131,8 +136,8 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
               <div class="col-md-2 col-6">
                 <div class="small-box bg-secondary">
                   <div class="inner">
-                    <h3>0</h3>
-                    <p>Industri</p>
+                    <h3><?php echo $obj->jumlahRespondenIndustri()->fetch_assoc()['jumlah'] ?></h3>
+                    <p>Responden Industri</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-city"></i>
@@ -142,30 +147,30 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
             </div>
           </div>
         </section>
-          <!-- Default box -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Title</h3>
+        <!-- Default box -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Title</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
-            <div class="card-body">
-              Start creating your amazing application!
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-              Footer
-            </div>
-            <!-- /.card-footer-->
           </div>
-          <!-- /.card -->
+          <div class="card-body">
+            Start creating your amazing application!
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            Footer
+          </div>
+          <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
 
         </section>
         <!-- /.content -->
@@ -189,7 +194,7 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
   <!-- Bootstrap 4 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 
 </body>
 
