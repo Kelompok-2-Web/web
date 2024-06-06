@@ -232,60 +232,71 @@ if (isset($_GET['survey_id'])) {
                                 <form id="form-survey" action="form_action.php" method="post">
                                     <input type="hidden" name="responden_id" id="responden-id-surv">
                                     <input type="hidden" name="jenis_survey" value="<?= $survey['survey_jenis'] ?>">
+                                    <?php
+                                    $soal = new mSurveySoal();
 
-                                    <div class="card" id="card-survey">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Silahkan isi survey berikut</h3>
-                                            <div class="card-tools">
-                                                <!-- Collapse Button -->
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    $soal = $soal->getDataBySurveyIdKategori($survey['survey_id']);
+                                    $counter = 0;
+                                    foreach ($soal as $key => $value) {
+                                    ?>
+                                        <div class="card collapsed-card" id="card-survey">
+                                            <div class="card-header" data-card-widget="collapse">
+                                                <h3 class="card-title">Survey <?php echo $key ?></h3>
+                                                <div class="card-tools">
+                                                    <!-- Collapse Button -->
+                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <?php
-                                            $soal = new mSurveySoal();
-
-                                            $soal = $soal->getDataBySurveyId($survey['survey_id']);
-                                            while ($row = $soal->fetch_assoc()) {
-                                                if ($row['soal_jenis'] === 'rating') {
-                                            ?>
-                                                    <div class="form-group">
-                                                        <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
-                                                        <br>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId1<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="1" />
-                                                            <label for="someRadioId1<?= $row['soal_id'] ?>">Sangat Tidak Puas</label>
-                                                        </div>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId2<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="2" />
-                                                            <label for="someRadioId2<?= $row['soal_id'] ?>">Tidak Puas</label>
-                                                        </div>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId3<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="3" />
-                                                            <label for="someRadioId3<?= $row['soal_id'] ?>">Puas</label>
-                                                        </div>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="someRadioId4<?= $row['soal_id'] ?>" name="<?= $row['soal_id'] ?>_jawaban" value="4" />
-                                                            <label for="someRadioId4<?= $row['soal_id'] ?>">Sangat Puas</label>
-                                                        </div>
-                                                    </div>
+                                            <div class="card-body">
                                                 <?php
-                                                } else {
+                                                foreach ($value as $key1 => $value1) {
+                                                    if ($value1['soal_jenis'] === 'rating') {
                                                 ?>
-                                                    <div class="form-group">
-                                                        <h5><?php echo $row['no_urut'] . ". " . $row['soal_nama'] ?></h5>
-                                                        <br>
-                                                        <textarea class="form-control" rows="3" name="<?= $row['soal_id'] ?>_jawaban" placeholder="Masukkan jawaban anda"></textarea>
-                                                    </div>
+                                                        <div class="form-group">
+                                                            <h5><?php echo $value1['no_urut'] . ". " . $value1['soal_nama'] ?></h5>
+                                                            <br>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="radio" id="someRadioId1<?= $value1['soal_id'] ?>" name="<?= $value1['soal_id'] ?>_jawaban" value="1" required />
+                                                                <label for="someRadioId1<?= $value1['soal_id'] ?>">Sangat Tidak Puas</label>
+                                                            </div>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="radio" id="someRadioId2<?= $value1['soal_id'] ?>" name="<?= $value1['soal_id'] ?>_jawaban" value="2" required />
+                                                                <label for="someRadioId2<?= $value1['soal_id'] ?>">Tidak Puas</label>
+                                                            </div>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="radio" id="someRadioId3<?= $value1['soal_id'] ?>" name="<?= $value1['soal_id'] ?>_jawaban" value="3" required />
+                                                                <label for="someRadioId3<?= $value1['soal_id'] ?>">Puas</label>
+                                                            </div>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="radio" id="someRadioId4<?= $value1['soal_id'] ?>" name="<?= $value1['soal_id'] ?>_jawaban" value="4" required />
+                                                                <label for="someRadioId4<?= $value1['soal_id'] ?>">Sangat Puas</label>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="form-group">
+                                                            <h5><?php echo $value1['no_urut'] . ". " . $value1['soal_nama'] ?></h5>
+                                                            <br>
+                                                            <textarea class="form-control" values="3" name="<?= $value1['soal_id'] ?>_jawaban" placeholder="Masukkan jawaban anda" required></textarea>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    echo "<br>";
+                                                } ?>
+                                            </div>
                                             <?php
-                                                }
-                                                echo "<br>";
-                                            } ?>
+                                            $counter += 1;
+                                            if (count($soal) === $counter) {
+                                            ?>
+                                                <div class="card-footer">
+                                                    <button type="submit" class="btn btn-primary float-right">Kirim</button>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary float-right">Kirim</button>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
                                 </form>
                             </div>
                         </div>
@@ -327,7 +338,6 @@ if (isset($_GET['survey_id'])) {
                 $('#card-biodata').removeClass('card-primary')
             })
 
-            $('#card-survey').CardWidget('collapse')
 
             document.getElementById('form-biodata').addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -340,15 +350,10 @@ if (isset($_GET['survey_id'])) {
                     type: "POST",
                     data: $('#form-biodata').serialize(),
                     success: function(resp) {
-                        console.log(resp)
                         $('#responden-id-biod').val(resp.responden_id)
                         $('#responden-id-surv').val(resp.responden_id)
                     }
                 })
-            })
-
-            document.getElementById('form-survey').addEventListener('submit', function(e) {
-                $('#card-survey').CardWidget('collapse')
             })
         </script>
 
