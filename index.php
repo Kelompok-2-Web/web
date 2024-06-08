@@ -77,74 +77,72 @@ $sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
             $obj = new mDashboard();
             ?>
             <div class="row">
-              <div class="col-md-2 col-6">
-                <!-- small card -->
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenDosen()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Dosen</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-info">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenDosen()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Dosen</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user-tie"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-user-tie"></i>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-6">
-                <div class="small-box bg-success">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Mahasiswa</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-success">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Mahasiswa</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-user"></i>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-6">
-                <div class="small-box bg-warning">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenAlumni()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Alumni</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-warning">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenAlumni()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Alumni</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user-graduate"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-user-graduate"></i>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-6">
-                <div class="small-box bg-danger">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenOrtu()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Orang Tua</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-danger">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenOrtu()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Orang Tua</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user-friends"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-user-friends"></i>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-6">
-                <div class="small-box bg-primary">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenTendik()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Tendik</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-primary">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenTendik()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Tendik</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user-gear"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-user-gear"></i>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-6">
-                <div class="small-box bg-secondary">
-                  <div class="inner">
-                    <h3><?php echo $obj->jumlahRespondenIndustri()->fetch_assoc()['jumlah'] ?></h3>
-                    <p>Responden Industri</p>
+              <div class="col-lg-2 col-5">
+                  <div class="small-box bg-secondary">
+                      <div class="inner">
+                          <h3><?php echo $obj->jumlahRespondenIndustri()->fetch_assoc()['jumlah'] ?></h3>
+                          <p>Responden Industri</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-city"></i>
+                      </div>
                   </div>
-                  <div class="icon">
-                    <i class="fas fa-city"></i>
-                  </div>
-                </div>
               </div>
-            </div>
           </div>
         </section>
         <!-- Default box -->

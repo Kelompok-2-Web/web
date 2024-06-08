@@ -8,36 +8,41 @@
     padding: 20px;
   }
   
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid responsif */
-    gap: 20px; /* Tambahkan jarak antar kartu */
-  }
-  
-  .bg-orange {
-    background-color: #fca503 !important;
-  }
-  
-  .bg-gg {
-    background-color: #eab676 !important;
-  }
-
   .small-box {
     border-radius: 0.25rem;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
     display: block;
     margin-bottom: 20px;
     position: relative;
-    width: 250px;
-    height: 150px;   
-  }
+    width: 100%;
+    height: 150px;
+    margin: 10px; /* Tambahkan margin */
+}
 
-  .small-box > .inner {
+.small-box > .inner {
     padding: 10px;
-  }
+}
 
-  .col-lg-3, .col-6{
-    width: 50%;
-    padding-left: 1px;
-    padding-right: 1px;
-  }
+.container-fluid {
+    padding: 20px;
+}
+
+.col-lg-2, .col-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px; /* Tambahkan margin bawah */
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Tambahkan jarak antar kartu */
+}
+
+.bg-orange {
+    background-color: #fca503 !important;
+}
+
+.bg-gg {
+    background-color: #eab676 !important;
+}
