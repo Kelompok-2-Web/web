@@ -1,0 +1,21 @@
+body {
+    background-color: #f4f6f9;
+  }
+  .login-box {
+    max-width: 400px;
+  }
+  .card-body {
+    padding: 2rem;
+  }
+  .btn-survey {
+    width: 120px;
+    margin: 0.5rem;
+    transition: transform 0.2s;
+  }
+  .btn-survey:hover {
+    transform: scale(1.05);
+  }
+  .login-box-msg {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
