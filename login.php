@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,38 +21,53 @@ if (session_status() == PHP_SESSION_NONE) {
   <style>
     body {
       background-image: url("assets/polinema.jpg");
-      background-size: cover; /* Mengatur gambar agar selalu mencakup seluruh area latar belakang */
-      background-position: center; /* Mengatur posisi gambar latar belakang ke tengah */
-      background-repeat: no-repeat; /* Mencegah gambar latar belakang diulang */
+      background-size: cover;
+      /* Mengatur gambar agar selalu mencakup seluruh area latar belakang */
+      background-position: center;
+      /* Mengatur posisi gambar latar belakang ke tengah */
+      background-repeat: no-repeat;
+      /* Mencegah gambar latar belakang diulang */
     }
+
     .login-box {
-      max-width: 600px; /* Memperbesar lebar maksimal */
+      max-width: 600px;
+      /* Memperbesar lebar maksimal */
       width: 100%;
       margin: 7% auto;
     }
+
     .card-body {
       padding: 2.5rem;
     }
+
     .login-box-msg {
       font-size: 1.2rem;
       margin-bottom: 2rem;
     }
+
     .card-header {
       padding: 1.5rem 1rem;
     }
+
     .card-header .h1 {
       font-size: 2.2rem;
     }
-    .daftar, .daftardua {
+
+    .daftar,
+    .daftardua {
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-    .daftar a, .daftardua a {
+
+    .daftar a,
+    .daftardua a {
       color: #007bff;
       text-decoration: none;
       margin: 0 10px;
     }
-    .daftar a:hover, .daftardua a:hover {
+
+    .daftar a:hover,
+    .daftardua a:hover {
       text-decoration: underline;
     }
   </style>
@@ -94,26 +110,27 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
           </div>
 
-          <!-- Tombol untuk pengguna non-admin -->
-          <div class="text-center">
-            <p class="mb-3"><u>Link Survey</u></p>
-            <p class="daftar">
-                <a href="form.php?role=mahasiswa">Daftar Mahasiswa</a> |
-                <a href="form.php?role=dosen">Daftar Dosen</a> |
-                <a href="form.php?role=orangtua">Daftar Orang Tua</a>
-            </p>
-            <p class="daftardua">
-                <a href="form.php?role=tendik">Daftar Tendik</a> |
-                <a href="form.php?role=industri">Daftar Industri</a> |
-                <a href="form.php?role=alumni">Daftar Alumni</a>
-            </p>
-           </div>
-
           <div class="row">
             <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block mb-4">Login Admin</button>
             </div>
           </div>
+
+          <!-- Tombol untuk pengguna non-admin -->
+          <div class="text-center">
+            <p class="mb-3"><u>Link Survey</u></p>
+            <p class="daftar">
+              <a href="form.php?role=mahasiswa">Mahasiswa</a> |
+              <a href="form.php?role=dosen">Dosen</a> |
+              <a href="form.php?role=orangtua">Orang Tua</a>
+            </p>
+            <p class="daftardua">
+              <a href="form.php?role=tendik">Tendik</a> |
+              <a href="form.php?role=industri">Industri</a> |
+              <a href="form.php?role=alumni">Alumni</a>
+            </p>
+          </div>
+
         </form>
       </div>
     </div>
@@ -126,4 +143,5 @@ if (session_status() == PHP_SESSION_NONE) {
   <!-- AdminLTE App -->
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

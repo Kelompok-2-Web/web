@@ -78,147 +78,153 @@ if (isset($_GET['survey_id'])) {
                                         </div>
                                         <div class="card-body">
                                             <?php
-                                            if ($survey['survey_jenis'] === "alumni" || $survey['survey_jenis'] === "mahasiswa") {
+                                            switch ($survey['survey_jenis']) {
+                                                case 'mahasiswa':
+                                                case 'alumni':
                                             ?>
-                                                <div class="form-group">
-                                                    <label for="inputNIM">NIM</label>
-                                                    <input type="number" class="form-control" id="inputNIM" name="responden_nim" placeholder="Masukkan NIM" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNama">Nama</label>
-                                                    <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputProdi">Prodi</label>
-                                                    <input type="text" class="form-control" id="inputProdi" name="responden_prodi" placeholder="Masukkan Prodi" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail">Email</label>
-                                                    <input type="email" class="form-control" id="inputEmail" name="responden_email" placeholder="Masukkan Email" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNoHP">No. HP</label>
-                                                    <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
-                                                </div>
-                                                <?php
-                                                if ($survey['survey_jenis'] === "mahasiswa") {
-                                                ?>
                                                     <div class="form-group">
-                                                        <label for="inputTahunMasuk">Tahun Masuk</label>
-                                                        <input type="number" class="form-control" id="inputTahunMasuk" name="tahun_masuk" placeholder="Masukkan tahun Masuk" required>
+                                                        <label for="inputNIM">NIM</label>
+                                                        <input type="number" class="form-control" id="inputNIM" name="responden_nim" placeholder="Masukkan NIM" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNama">Nama</label>
+                                                        <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputProdi">Prodi</label>
+                                                        <input type="text" class="form-control" id="inputProdi" name="responden_prodi" placeholder="Masukkan Prodi" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail">Email</label>
+                                                        <input type="email" class="form-control" id="inputEmail" name="responden_email" placeholder="Masukkan Email" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNoHP">No. HP</label>
+                                                        <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
+                                                    </div>
+                                                    <?php
+                                                    if ($survey['survey_jenis'] === "mahasiswa") {
+                                                    ?>
+                                                        <div class="form-group">
+                                                            <label for="inputTahunMasuk">Tahun Masuk</label>
+                                                            <input type="number" class="form-control" id="inputTahunMasuk" name="tahun_masuk" placeholder="Masukkan tahun Masuk" required>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="form-group">
+                                                            <label for="inputTahunLulus">Tahun Lulus</label>
+                                                            <input type="number" class="form-control" id="inputTahunLulus" name="tahun_lulus" placeholder="Masukkan tahun Lulus" required>
+                                                        </div>
+                                                    <?php
+                                                    }
+                                                    break;
+                                                case "dosen":
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label for="inputNIP">NIP</label>
+                                                        <input type="text" class="form-control" id="inputNIP" name="responden_nip" placeholder="Masukkan NIP" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNama">Nama</label>
+                                                        <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputUnit">Unit</label>
+                                                        <input type="text" class="form-control" id="inputUnit" name="responden_unit" placeholder="Masukkan Unit" required>
                                                     </div>
                                                 <?php
-                                                } else {
+                                                    break;
+                                                case "industri":
                                                 ?>
                                                     <div class="form-group">
-                                                        <label for="inputTahunLulus">Tahun Lulus</label>
-                                                        <input type="number" class="form-control" id="inputTahunLulus" name="tahun_lulus" placeholder="Masukkan tahun Lulus" required>
+                                                        <label for="inputNama">Nama</label>
+                                                        <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputJabatan">Jabatan</label>
+                                                        <input type="text" class="form-control" id="inputJabatan" name="responden_jabatan" placeholder="Masukkan Jabatan" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPerusahaan">Perusahaan</label>
+                                                        <input type="text" class="form-control" id="inputPerusahaan" name="responden_perusahaan" placeholder="Masukkan Perusahaan" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail">Email</label>
+                                                        <input type="email" class="form-control" id="inputEmail" name="responden_email" placeholder="Masukkan Email" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNoHP">No. HP</label>
+                                                        <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputKota">Kota</label>
+                                                        <input type="text" class="form-control" id="inputKota" name="responden_kota" placeholder="Masukkan Kota" required>
                                                     </div>
                                                 <?php
-                                                }
-                                            } elseif ($survey['survey_jenis'] === "dosen") {
+                                                    break;
+                                                case "orang_tua":
                                                 ?>
-                                                <div class="form-group">
-                                                    <label for="inputNIP">NIP</label>
-                                                    <input type="text" class="form-control" id="inputNIP" name="responden_nip" placeholder="Masukkan NIP" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNama">Nama</label>
-                                                    <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputUnit">Unit</label>
-                                                    <input type="text" class="form-control" id="inputUnit" name="responden_unit" placeholder="Masukkan Unit" required>
-                                                </div>
-                                            <?php
-                                            } elseif ($survey['survey_jenis'] === "industri") {
-                                            ?>
-                                                <div class="form-group">
-                                                    <label for="inputNama">Nama</label>
-                                                    <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputJabatan">Jabatan</label>
-                                                    <input type="text" class="form-control" id="inputJabatan" name="responden_jabatan" placeholder="Masukkan Jabatan" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPerusahaan">Perusahaan</label>
-                                                    <input type="text" class="form-control" id="inputPerusahaan" name="responden_perusahaan" placeholder="Masukkan Perusahaan" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail">Email</label>
-                                                    <input type="email" class="form-control" id="inputEmail" name="responden_email" placeholder="Masukkan Email" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNoHP">No. HP</label>
-                                                    <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputKota">Kota</label>
-                                                    <input type="text" class="form-control" id="inputKota" name="responden_kota" placeholder="Masukkan Perusahaan" required>
-                                                </div>
-                                            <?php
-                                            } elseif ($survey['survey_jenis'] === "orang_tua") {
-                                            ?>
-                                                <div class="form-group">
-                                                    <label for="inputNama">Nama</label>
-                                                    <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputJenisKelamin">Jenis Kelamin</label>
-                                                    <select name="responden_jk" id="inputJenisKelamin" class="custom-select rounded-1" required>
-                                                        <option value="" default>Pilih jenis kelamin</option>
-                                                        <option value="L">Laki-Laki</option>
-                                                        <option value="P">Perempuan</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputUmur">Umur</label>
-                                                    <input type="number" class="form-control" id="inputUmur" name="responden_umur" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNoHP">No. HP</label>
-                                                    <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPedidikan">Pendidikan</label>
-                                                    <input type="text" class="form-control" id="inputPedidikan" name="responden_pendidikan" placeholder="Masukkan Pendidikan" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPekerjaan">Pekerjaan</label>
-                                                    <input type="text" class="form-control" id="inputPekerjaan" name="responden_pekerjaan" placeholder="Masukkan Pekerjaan" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPenghasilan">Penghasilan</label>
-                                                    <input type="text" class="form-control" id="inputPenghasilan" name="responden_penghasilan" placeholder="Masukkan Penghasilan" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputMahasiswaNIM">NIM Mahasiswa</label>
-                                                    <input type="number" class="form-control" id="inputMahasiswaNIM" name="mahasiswa_nim" placeholder="Masukkan NIM Mahasiswa" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputMahasiswaNama">Nama Mahasiswa</label>
-                                                    <input type="text" class="form-control" id="inputMahasiswaNama" name="mahasiswa_nama" placeholder="Masukkan Nama Mahasiswa" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputMahasiswaProdi">Prodi Mahasiswa</label>
-                                                    <input type="text" class="form-control" id="inputMahasiswaProdi" name="mahasiswa_prodi" placeholder="Masukkan Prodi Mahasiswa" required>
-                                                </div>
-                                            <?php
-                                            } elseif ($survey['survey_jenis'] === "tendik") {
-                                            ?>
-                                                <div class="form-group">
-                                                    <label for="inputNipeg">NIPEG</label>
-                                                    <input type="text" class="form-control" id="inputNipeg" name="responden_nipeg" placeholder="Masukkan Nipeg" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputNama">Nama</label>
-                                                    <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputUnit">Unit</label>
-                                                    <input type="text" class="form-control" id="inputUnit" name="responden_unit" placeholder="Masukkan Unit" required>
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNama">Nama</label>
+                                                        <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputJenisKelamin">Jenis Kelamin</label>
+                                                        <select name="responden_jk" id="inputJenisKelamin" class="custom-select rounded-1" required>
+                                                            <option value="" default>Pilih jenis kelamin</option>
+                                                            <option value="L">Laki-Laki</option>
+                                                            <option value="P">Perempuan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputUmur">Umur</label>
+                                                        <input type="number" class="form-control" id="inputUmur" name="responden_umur" placeholder="Masukkan Umur" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNoHP">No. HP</label>
+                                                        <input type="tel" class="form-control" id="inputNoHP" name="responden_hp" placeholder="Masukkan No. HP" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPedidikan">Pendidikan</label>
+                                                        <input type="text" class="form-control" id="inputPedidikan" name="responden_pendidikan" placeholder="Masukkan Pendidikan" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPekerjaan">Pekerjaan</label>
+                                                        <input type="text" class="form-control" id="inputPekerjaan" name="responden_pekerjaan" placeholder="Masukkan Pekerjaan" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPenghasilan">Penghasilan</label>
+                                                        <input type="text" class="form-control" id="inputPenghasilan" name="responden_penghasilan" placeholder="Masukkan Penghasilan" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputMahasiswaNIM">NIM Mahasiswa</label>
+                                                        <input type="number" class="form-control" id="inputMahasiswaNIM" name="mahasiswa_nim" placeholder="Masukkan NIM Mahasiswa" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputMahasiswaNama">Nama Mahasiswa</label>
+                                                        <input type="text" class="form-control" id="inputMahasiswaNama" name="mahasiswa_nama" placeholder="Masukkan Nama Mahasiswa" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputMahasiswaProdi">Prodi Mahasiswa</label>
+                                                        <input type="text" class="form-control" id="inputMahasiswaProdi" name="mahasiswa_prodi" placeholder="Masukkan Prodi Mahasiswa" required>
+                                                    </div>
+                                                <?php
+                                                    break;
+                                                case "tendik":
+                                                ?>
+                                                    <div class="form-group">
+                                                        <label for="inputNipeg">NIPEG</label>
+                                                        <input type="text" class="form-control" id="inputNipeg" name="responden_nipeg" placeholder="Masukkan Nipeg" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputNama">Nama</label>
+                                                        <input type="text" class="form-control" id="inputNama" name="responden_nama" placeholder="Masukkan Nama" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputUnit">Unit</label>
+                                                        <input type="text" class="form-control" id="inputUnit" name="responden_unit" placeholder="Masukkan Unit" required>
+                                                    </div>
                                             <?php
                                             }
                                             ?>
@@ -239,9 +245,9 @@ if (isset($_GET['survey_id'])) {
                                     $counter = 0;
                                     foreach ($soal as $key => $value) {
                                     ?>
-                                        <div class="card collapsed-card" id="card-survey">
+                                        <div class="card collapsed-card card-survey" id="card-survey">
                                             <div class="card-header" data-card-widget="collapse">
-                                                <h3 class="card-title">Survey <?php echo $key ?></h3>
+                                                <h3 class="card-title"><?php echo strpos($key, "Survey") !== false ? $key : "Survey " . $key ?></h3>
                                                 <div class="card-tools">
                                                     <!-- Collapse Button -->
                                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
@@ -322,13 +328,15 @@ if (isset($_GET['survey_id'])) {
         <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
         <script>
-            $('#card-survey').on('expanded.lte.cardwidget', function(e) {
-                $('#card-survey').addClass('card-primary')
-            })
+            $(document).ready(function() {
+                $(document).on('expanded.lte.cardwidget', '.card-survey', function(e) {
+                    $(this).addClass('card-primary')
+                })
 
-            $('#card-survey').on('collapsed.lte.cardwidget', function(e) {
-                $('#card-survey').removeClass('card-primary')
-            })
+                $(document).on('collapsed.lte.cardwidget', '.card-survey', function(e) {
+                    $(this).removeClass('card-primary')
+                })
+            });
 
             $('#card-biodata').on('expanded.lte.cardwidget', function(e) {
                 $('#card-biodata').addClass('card-primary')
@@ -363,10 +371,6 @@ if (isset($_GET['survey_id'])) {
     </html>
 <?php
 } else {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
     $status = isset($_GET['status']) ? $_GET['status'] : "";
     $message = isset($_GET['message']) ? $_GET['message'] : ""
 ?>
@@ -407,7 +411,7 @@ if (isset($_GET['survey_id'])) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Survey <?php echo $_SESSION['role'] ?></h1>
+                                <h1>Survey <?php echo $_GET['role'] ?></h1>
                             </div>
                         </div>
                     </div><!-- /.container-fluid -->
@@ -434,7 +438,7 @@ if (isset($_GET['survey_id'])) {
                                 <tbody>
                                     <?php
                                     $bank = new mSurvey();
-                                    $role = $_SESSION['role'];
+                                    $role = $_GET['role'];
                                     $list = $bank->getDatabyRole($role);
 
                                     $i = 1;

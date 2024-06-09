@@ -71,10 +71,6 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
     $jawaban = new tJawabanOrtu();
     $responden = new tRespondenOrtu();
     break;
-
-  default:
-    # code...
-    break;
 }
 ?>
 
@@ -171,7 +167,11 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
             <?php
             $soal = new mSurveySoal();
 
-            $list = $jawaban->getData();
+            if ($_GET['responden_id']) {
+              $list = $jawaban->getDataByRespondenId($_GET['responden_id']);
+            } else {
+              $list = $jawaban->getData();
+            }
 
             $i = 1;
             while ($row = $list->fetch_assoc()) {

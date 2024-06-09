@@ -2,7 +2,7 @@
 
 $act = $_GET['act'];
 
-switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
+switch ($_GET['sub_menu']) {
    case 'dosen':
       include_once "model/jawaban/t_jawaban_dosen.php";
 

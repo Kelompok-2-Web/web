@@ -47,6 +47,22 @@ class tJawabanAlumni
         return $query->get_result();
     }
 
+    public function getDataByRespondenId($id)
+    {
+
+        // query untuk mengambil data berdasarkan id
+        $query = $this->db->prepare("select * from {$this->table} where responden_alumni_id = ?");
+
+        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
+        $query->bind_param('i', $id);
+
+        // eksekusi query
+        $query->execute();
+
+        // ambil hasil query
+        return $query->get_result();
+    }
+
     public function updateData($id, $data)
     {
         // query untuk update data

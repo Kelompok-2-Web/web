@@ -76,7 +76,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <textarea class="form-control" name="deskripsi_survey" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="datetimepicker">Pilih tanggal</label>
+                                <label for="datetimepicker">Tanggal Survey</label>
                                 <div class="input-group date" id="datetimepicker" data-target-input="nearest">
                                     <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" />
                                     <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
@@ -142,7 +142,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
                                 <textarea class="form-control" name="deskripsi_survey" rows="3"><?= $data['survey_deskripsi'] ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="datetimepicker">Pilih tanggal</label>
+                                <label for="datetimepicker">Tanggal Survey</label>
                                 <div class="form-group">
                                     <div class="input-group date" id="datetimepicker" data-target-input="nearest">
                                         <input type="text" name="tanggal_survey" class="form-control datetimepicker-input" data-target="#datetimepicker" value="<?= $data['survey_tanggal'] ?>" />

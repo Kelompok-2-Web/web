@@ -102,7 +102,7 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
           </ul>
         </li>
 
-        <li class="nav-item has-treeview <?php echo ($menu == 'jawaban') ? 'menu-open' : '' ?>">
+        <!-- <li class="nav-item has-treeview <?php echo ($menu == 'jawaban') ? 'menu-open' : '' ?>">
           <a href="#" class="nav-link <?php echo ($menu == 'jawaban') ? 'active' : '' ?>">
             <i class="nav-icon fas fa-voicemail"></i>
             <p>
@@ -148,7 +148,7 @@ $tipe = isset($_GET['tipe']) ? $_GET['tipe'] : '';
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a href="?pages=kategori" class="nav-link <?php echo ($menu == 'kategori') ? 'active' : '' ?>">
