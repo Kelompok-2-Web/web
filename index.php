@@ -4,14 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
- if (!empty($_SESSION['role']) && $_SESSION['role'] != 'admin') {
-  header("location:form.php");
-} elseif (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION['user_id'])) {
+if (empty($_SESSION['nama']) && empty($_SESSION['username']) && empty($_SESSION['user_id'])) {
   header("location:login.php");
 }
 
 $menu = !empty($_GET['pages']) ? explode('/', $_GET['pages'])[0] : "index";
-$menu = !empty($_GET['tipe']) ? explode('/', $_GET['tipe'])[0] : $menu;
+$sub_menu = !empty($_GET['sub_menu']) ? explode('/', $_GET['sub_menu'])[0] : "";
 
 ?>
 <!DOCTYPE html>
@@ -29,10 +27,12 @@ $menu = !empty($_GET['tipe']) ? explode('/', $_GET['tipe'])[0] : $menu;
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- CSS BOX -->
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed" style="height: 100%;">
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
@@ -69,7 +69,79 @@ $menu = !empty($_GET['tipe']) ? explode('/', $_GET['tipe'])[0] : $menu;
 
         <!-- Main content -->
         <section class="content">
-
+          <!-- box responden -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2 col-6">
+                <!-- small card -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Dosen</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Mahasiswa</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Alumni</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-graduate"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Orang Tua</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-friends"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-primary">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Tendik</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-gear"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-6">
+                <div class="small-box bg-secondary">
+                  <div class="inner">
+                    <h3>0</h3>
+                    <p>Industri</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-city"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
@@ -117,7 +189,7 @@ $menu = !empty($_GET['tipe']) ? explode('/', $_GET['tipe'])[0] : $menu;
   <!-- Bootstrap 4 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 
 </body>
 
