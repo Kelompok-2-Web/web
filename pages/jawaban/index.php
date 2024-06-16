@@ -170,8 +170,8 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
           <tbody>
             <?php
             $soal = new mSurveySoal();
-
-            $list = $jawaban->getData();
+            $id = $_GET['id'];
+            $list = $jawaban->getDataByRespondenId($id);
 
             $i = 1;
             while ($row = $list->fetch_assoc()) {
