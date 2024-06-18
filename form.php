@@ -407,7 +407,7 @@ if (isset($_GET['survey_id'])) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Survey <?php echo $_SESSION['role'] ?></h1>
+                                <h1>Survey <?php echo $_GET['role'] ?></h1>
                             </div>
                         </div>
                     </div><!-- /.container-fluid -->
@@ -434,7 +434,7 @@ if (isset($_GET['survey_id'])) {
                                 <tbody>
                                     <?php
                                     $bank = new mSurvey();
-                                    $role = $_SESSION['role'];
+                                    $role = $_GET['role'];
                                     $list = $bank->getDatabyRole($role);
 
                                     $i = 1;
