@@ -41,7 +41,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
             ?>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah User</h3>
+                        <h3 class="card-title">Tambah Kategori</h3>
                         <div class="card-tools"></div>
                     </div>
                     <div class="card-body">
@@ -77,7 +77,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
                         <form action="?pages=kategori/kategori_action.php&act=edit&id=<?= $id ?>" method="post" id="form-tambah">
                             <div class="form-group">
                                 <label for="nama_kategori">Nama Kategori</label>
-                                <input required type="text" name="nama_kategori" id="nama_kategori" class="form-control">
+                                <input required type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="<?= $data['kategori_nama'] ?>">
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>
@@ -144,13 +144,11 @@ $message = isset($_GET['message']) ? $_GET['message'] : ""
     <!-- /.card -->
 </section>
 
-<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="plugins/jquery-validation/localization/messages_id.min.js"></script>
-
+<!-- jQuery Validate -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_id.min.js"></script>
 
 <script>
-    $(document).ready(function() { // maksud nya adl ketika dokumen sudah siap (html telah d render oleh browser) maka jalankan fungsi berikut ini
-
-    });
+    $(document).ready(function() {});
 </script>

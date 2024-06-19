@@ -45,6 +45,59 @@ class mSurveySoal
         return $query->get_result();
     }
 
+    public function getDataBySurveyId($id)
+    {
+
+        // query untuk mengambil data berdasarkan id
+        $query = $this->db->prepare("select * from {$this->table} where survey_id = ? order by no_urut asc");
+
+        // binding parameter ke query "i" berarti integer. Biar tidak kena SQL Injection
+        $query->bind_param('i', $id);
+
+        // eksekusi query
+        $query->execute();
+
+        // ambil hasil query
+        return $query->get_result();
+    }
+
+    public function getDataBySurveyIdKategori($id)
+    {
+        $query = $this->db->prepare("SELECT q.soal_id, q.survey_id, q.no_urut, q.soal_jenis, q.soal_nama , c.kategori_nama
+                                    FROM {$this->table} q
+                                    JOIN m_kategori c ON q.kategori_id = c.kategori_id
+                                    WHERE q.survey_id = ?
+                                    ORDER BY q.no_urut");
+
+        $query->bind_param('i', $id);
+        $query->execute();
+        $result = $query->get_result();
+
+        // Initialize an array to hold the categorized questions
+        $categorizedQuestions = [];
+
+        // Process the result
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $categoryName = $row['kategori_nama'];
+
+                // Group questions by category
+                if (!isset($categorizedQuestions[$categoryName])) {
+                    $categorizedQuestions[$categoryName] = [];
+                }
+                $categorizedQuestions[$categoryName][] = [
+                    'soal_id' => $row['soal_id'],
+                    'survey_id' => $row['survey_id'],
+                    'no_urut' => $row['no_urut'],
+                    'soal_jenis' => $row['soal_jenis'],
+                    'soal_nama' => $row['soal_nama']
+                ];
+            }
+        }
+
+        return $categorizedQuestions;
+    }
+
     public function updateData($id, $data)
     {
         // query untuk update data
@@ -55,6 +108,8 @@ class mSurveySoal
 
         // eksekusi query
         $query->execute();
+
+        // aksdda
     }
 
     public function deleteData($id)
