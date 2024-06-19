@@ -450,7 +450,7 @@ if (isset($_GET['survey_id'])) {
                                             <td><?= $row['survey_deskripsi'] ?></td>
                                             <td><?= $row['survey_tanggal'] ?></td>
                                             <td>
-                                                <a title="kerjakan survey" href="?pages=form&survey_id=<?= $row['survey_id'] ?>">Kerjakan</a>
+                                                <a title="kerjakan survey" href="?survey_id=<?= $row['survey_id'] ?>">Kerjakan</a>
                                             </td>
                                         </tr>
                                     <?php

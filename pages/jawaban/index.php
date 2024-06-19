@@ -153,7 +153,7 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
               <tr>
                 <td><?= $i ?></td>
                 <td><?= $row[$jaw_key] ?></td>
-                <td><a href="?pages=responden&sub_menu=<?= $_GET['sub_menu'] ?>&responden_id=<?= $row[$resp_key] ?>"><?= ucfirst($resp_res['responden_nama']) ?></a></td>
+                <td><a href="?pages=responden&sub_menu=<?= str_replace("jawaban", "responden", $_GET['sub_menu']) ?>&responden_id=<?= $row[$resp_key] ?>"><?= ucfirst($resp_res['responden_nama']) ?></a></td>
                 <td><a href="?pages=soal&soal_id=<?= $row['soal_id'] ?>"><?= ucfirst($soal_res['soal_nama']) ?></a></td>
                 <td><?= $row['jawaban'] ?></td>
                 <!-- <td>
