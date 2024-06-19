@@ -1,0 +1,21 @@
+.ui-datepicker .ui-datepicker-current-day {
+    background: #77c1f6 !important; /* Warna latar belakang hari aktif */
+    color: #fff !important; /* Warna teks hari aktif */
+  }
+  
+  .ui-datepicker .ui-datepicker-current-day a {
+    color: #ff4747 !important; /* Warna teks tautan hari aktif */
+}
+
+.ui-datepicker .ui-datepicker-current-day a {
+    color: #fff
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background: #f9f9f9 !important; /* Warna latar belakang header */
+    color: #000000 !important; /* Warna teks header */
+}
+
+.ui-datepicker {
+    background: #bdfffd!important; /* Warna latar belakang datepicker */
+  }
