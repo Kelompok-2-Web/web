@@ -18,7 +18,7 @@ if (!empty($_GET['survey_id'])) {
     $surveyId = $_GET['survey_id'];
     $surveyModel = new mSurvey();
     $surveyResult = $surveyModel->getDataById($surveyId);
-    
+
     if ($surveyResult) {
         $survey = $surveyResult->fetch_assoc();
     } else {
@@ -33,10 +33,68 @@ if (!empty($_GET['survey_id'])) {
 }
 
 $kategori = array("Layanan Akademik", "Layanan Non Akademik", "Sarana dan Prasarana");
-$sangat_puas = array(20, 35, 15);
-$puas = array(30, 25, 40);
-$tidak_puas = array(15, 10, 20);
-$sangat_tidak_puas = array(5, 8, 3);
+// echo __DIR__ . "/model/jawaban";
+$dir = new DirectoryIterator(dirname(__DIR__ . "/model/jawaban"));
+$skor = array();
+
+function ambildatagrafik($table)
+{
+    $kategori_id = [2, 3, 4];
+    $hasil = array();
+
+    foreach ($kategori_id as $_ => $value) {
+        include "model/koneksi.php";
+        // query
+        $query = $db->prepare("
+            SELECT COUNT(jawab.jawaban) as total_jawaban, jawaban
+            FROM {$table} as jawab 
+
+            JOIN m_survey_soal as soal 
+                ON jawab.soal_id = soal.soal_id
+                
+            WHERE soal.kategori_id = {$value}
+            GROUP BY jawaban;
+        ");
+
+        $query->execute();
+        $result = $query->get_result();
+
+        $dat = array();
+        while ($row = $result->fetch_assoc()) {
+            $dat[$row['jawaban']] = $row['total_jawaban'];
+        }
+        $hasil[$value] = $dat;
+    }
+
+    return $hasil;
+}
+
+$tabel = ["t_jawaban_alumni", "t_jawaban_dosen", "t_jawaban_industri", "t_jawaban_mahasiswa", "t_jawaban_ortu", "t_jawaban_tendik"];
+$sangat_puas = array(0, 0, 0);
+$puas = array(0, 0, 0);
+$tidak_puas = array(0, 0, 0);
+$sangat_tidak_puas = array(0, 0, 0);
+
+foreach ($tabel as $_ => $value) {
+    $apalah = ambildatagrafik($value);
+
+    foreach ($apalah as $key => $value) {
+        if ($key === 2) {
+            $tro = 0;
+        } elseif ($key === 3) {
+            $tro = 1;
+        } else {
+            $tro = 2;
+        }
+
+
+        @$sangat_puas[$tro] += $value[4];
+        @$puas[$tro] += $value[3];
+        @$tidak_puas[$tro] += $value[2];
+        @$sangat_tidak_puas[$tro] += $value[1];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +114,11 @@ $sangat_tidak_puas = array(5, 8, 3);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- CSS BOX -->
     <link rel="stylesheet" href="style.css">
-    <!-- jQuery UI -->
+    <!-- jQuery calender -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="calender.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" style="height: 100%;">
@@ -82,102 +142,114 @@ $sangat_tidak_puas = array(5, 8, 3);
                             </ol>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section class="content">
-                <div class="container-fluid">
-                    <?php
-                    include_once "model/m_dashboard.php";
-                    $obj = new mDashboard();
-                    ?>
-                    <div class="row">
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenDosen()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Dosen</p>
+                    <section class="content">
+                        <div class="container-fluid">
+                            <?php
+                            include_once "model/m_dashboard.php";
+                            $obj = new mDashboard();
+                            ?>
+                            <div class="row">
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-info">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenDosen()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Dosen</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-tie"></i>
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-purple">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Mahasiswa</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-success">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Alumni</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-danger">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenOrtu()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Orang Tua</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-user-friends"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-primary">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenTendik()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Tendik</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-user-gear"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="small-box bg-secondary">
+                                        <div class="inner">
+                                            <p>
+                                            <h3><?php echo $obj->jumlahRespondenIndustri()->fetch_assoc()['jumlah'] ?></h3>
+                                            </p>
+                                            <br>
+                                            <p>Industri</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-city"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container" style="width: 100%;">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h4>Hasil Form Survey</h4>
+                                        <div class="chart-container" style="position: relative; height:40vh;">
+                                            <canvas id="grafikKepuasan"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>Calender</h4>
+                                        <div id="datepicker"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-purple">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Mahasiswa</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenMahasiswa()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Alumni</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenOrtu()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Orang Tua</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-friends"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-primary">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenTendik()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Tendik</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-gear"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-6">
-                            <div class="small-box bg-secondary">
-                                <div class="inner">
-                                    <p><h3><?php echo $obj->jumlahRespondenIndustri()->fetch_assoc()['jumlah'] ?></h3></p>
-                                    <br>
-                                    <p>Industri</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-city"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container" style="width: 100%;">
-                        <h3>Hasil Form Survey </h3>
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="chart-container" style="position: relative; height:40vh;">
-                                    <canvas id="grafikKepuasan"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <h3>Pilih Tanggal</h3>
-                                <div id="datepicker"></div>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
             </section>
         </div>
@@ -192,64 +264,63 @@ $sangat_tidak_puas = array(5, 8, 3);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-    // Data untuk grafik
-    var kategori = <?php echo json_encode($kategori); ?>;
-    var sangat_puas = <?php echo json_encode($sangat_puas); ?>;
-    var puas = <?php echo json_encode($puas); ?>;
-    var tidak_puas = <?php echo json_encode($tidak_puas); ?>;
-    var sangat_tidak_puas = <?php echo json_encode($sangat_tidak_puas); ?>;
+        // Data untuk grafik
+        var kategori = <?php echo json_encode($kategori); ?>;
+        var sangat_puas = <?php echo json_encode($sangat_puas); ?>;
+        var puas = <?php echo json_encode($puas); ?>;
+        var tidak_puas = <?php echo json_encode($tidak_puas); ?>;
+        var sangat_tidak_puas = <?php echo json_encode($sangat_tidak_puas); ?>;
 
-    // Membuat grafik
-    var ctx = document.getElementById('grafikKepuasan').getContext('2d');
-    var grafikKepuasan = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: kategori,
-            datasets: [
-                {
-                    label: 'Sangat Puas',
-                    data: sangat_puas,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Puas',
-                    data: puas,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Tidak Puas',
-                    data: tidak_puas,
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Sangat Tidak Puas',
-                    data: sangat_tidak_puas,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        // Membuat grafik
+        var ctx = document.getElementById('grafikKepuasan').getContext('2d');
+        var grafikKepuasan = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: kategori,
+                datasets: [{
+                        label: 'Sangat Puas',
+                        data: sangat_puas,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Puas',
+                        data: puas,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Tidak Puas',
+                        data: tidak_puas,
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Sangat Tidak Puas',
+                        data: sangat_tidak_puas,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
-    // Inisialisasi Datepicker
-    $(function() {
-        $("#datepicker").datepicker();
-    });
-</script>
+        // Inisialisasi Datepicker
+        $(function() {
+            $("#datepicker").datepicker();
+        });
+    </script>
 </body>
 
 </html>

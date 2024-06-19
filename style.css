@@ -6,9 +6,9 @@
     min-height: calc(100vh - 60px);
     background: #f5f5f5; /* Latar belakang abu-abu terang */
     padding: 20px;
-  }
-  
-  .small-box {
+}
+
+.small-box {
     border-radius: 0.25rem;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
     display: block;
@@ -21,14 +21,13 @@
 
 .small-box > .inner {
     padding: 10px;
-    
 }
 
 .container-fluid {
-    padding: 20px;
+    padding: 10px 20px; /* Kurangi padding untuk mengurangi jarak antar elemen */
 }
 
-.col-lg-2, .col-5 {
+.col-md-2, .col-6 {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 20px; /* Tambahkan margin bawah */
@@ -46,4 +45,29 @@
 
 .bg-gg {
     background-color: #eab676 !important;
+}
+
+.align-items-center {
+    display: flex;
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.content-header h1 {
+    margin-bottom: 0;
+}
+
+.content-header .row {
+    margin-bottom: 10px; /* Kurangi margin bawah pada row di content-header */
+}
+
+.chart-container {
+    height: 40vh; /* Adjust the height as needed */
+}
+
+.h4 {
+    margin-top: 0;
 }
