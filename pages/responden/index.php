@@ -1,5 +1,5 @@
 <?php
-include_once 'model/survey/m_survey_soal.php';
+include_once 'model/survey/m_survey.php';
 
 $status = isset($_GET['status']) ? $_GET['status'] : "";
 $message = isset($_GET['message']) ? $_GET['message'] : "";
@@ -8,49 +8,37 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 switch (str_replace("responden_", "", $_GET['sub_menu'])) {
     case 'dosen':
         include_once "model/responden/t_responden_dosen.php";
-
         $resp_key = "responden_dosen_id";
-    
         $responden = new tRespondenDosen();
         break;
 
     case 'alumni':
         include_once "model/responden/t_responden_alumni.php";
-
         $resp_key = "responden_alumni_id";
-
         $responden = new tRespondenAlumni();
         break;
 
     case 'industri':
         include_once "model/responden/t_responden_industri.php";
-
         $resp_key = "responden_industri_id";
-
         $responden = new tRespondenIndustri();
         break;
 
     case 'tendik':
         include_once "model/responden/t_responden_tendik.php";
-
         $resp_key = "responden_tendik_id";
-
         $responden = new tRespondenTendik();
         break;
 
     case 'mahasiswa':
         include_once "model/responden/t_responden_mahasiswa.php";
-
         $resp_key = "responden_mahasiswa_id";
-
         $responden = new tRespondenMahasiswa();
         break;
 
     case 'orang_tua':
         include_once "model/responden/t_responden_ortu.php";
-
         $resp_key = "responden_ortu_id";
-
         $responden = new tRespondenOrtu();
         break;
 
@@ -99,10 +87,12 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
                 $id = $_GET['id'];
                 $list = $responden->getDataById($id);
                 $row = $list->fetch_assoc();
+                $survey = new mSurvey();
+                $survey_resp = $survey->getDataById($row['survey_id'])->fetch_assoc();
             switch (str_replace("responden_", "", $_GET['sub_menu'])) {
                 case 'dosen': ?>
                     <h3>Responden Dosen Id  : <?php echo $row['responden_dosen_id'] ?> </h3>
-                    <h3>Survey ID           : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey              : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal   : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden NIP       : <?php echo $row['responden_nip'] ?> </h3>
                     <h3>Responden Nama      : <?php echo $row['responden_nama'] ?> </h3>
@@ -114,7 +104,7 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
             
                 case 'alumni': ?>
                     <h3>Responden Alumni Id : <?php echo $row['responden_alumni_id'] ?> </h3>
-                    <h3>Survey ID           : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey              : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal   : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden NIM       : <?php echo $row['responden_nim'] ?> </h3>
                     <h3>Responden Nama      : <?php echo $row['responden_nama'] ?> </h3>
@@ -129,7 +119,7 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
             
                 case 'industri': ?>
                     <h3>Responden Industri Id   : <?php echo $row['responden_industri_id'] ?> </h3>
-                    <h3>Survey ID               : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey                  : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal       : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden Nama          : <?php echo $row['responden_nama'] ?> </h3>
                     <h3>Responden Jabatan       : <?php echo $row['responden_jabatan'] ?> </h3>
@@ -144,7 +134,7 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
             
                 case 'tendik': ?>
                     <h3>Responden Tendik Id     : <?php echo $row['responden_tendik_id'] ?> </h3>
-                    <h3>Survey ID               : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey                  : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal       : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden Nomor Pegawai : <?php echo $row['responden_nopeg'] ?> </h3>
                     <h3>Responden Nama          : <?php echo $row['responden_nama'] ?> </h3>
@@ -156,7 +146,7 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
             
                 case 'mahasiswa': ?>
                     <h3>Responden Mahasiswa Id  : <?php echo $row['responden_mahasiswa_id'] ?> </h3>
-                    <h3>Survey ID               : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey                  : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal       : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden NIM           : <?php echo $row['responden_nim'] ?> </h3>
                     <h3>Responden Nama          : <?php echo $row['responden_nama'] ?> </h3>
@@ -171,7 +161,7 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
             
                 case 'orang_tua': ?>
                     <h3>Responden Orang Tua Id  : <?php echo $row['responden_ortu_id'] ?> </h3>
-                    <h3>Survey ID               : <?php echo $row['survey_id'] ?> </h3>
+                    <h3>Survey                  : <?php echo ucfirst($survey_resp['survey_nama']) ?> </h3>
                     <h3>Responden Tanggal       : <?php echo $row['responden_tanggal'] ?> </h3>
                     <h3>Responden Nama          : <?php echo $row['responden_nama'] ?> </h3>
                     <h3>Responden Jenis Kelamin : <?php echo $row['responden_jk'] ?> </h3>
@@ -201,21 +191,25 @@ switch (str_replace("responden_", "", $_GET['sub_menu'])) {
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Responden ID</th>
-                            <th>Responden Tanggal</th>
-                            <th>Responden NAMA</th>
+                            <th>ID Responden</th>
+                            <th>Survey</th>
+                            <th>Tanggal</th>
+                            <th>Nama Responden</th>
                             <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $list = $responden->getData();
+                        $survey = new mSurvey();
                         $i = 1;
                         while ($row = $list->fetch_assoc()) {
+                        $survey_resp = $survey->getDataById($row['survey_id'])->fetch_assoc();
                         ?>
                             <tr>
                                 <td><?php echo $i ?></td>
                                 <td><?php echo $row[$resp_key] ?></td>
+                                <td><a href="?pages=survey&survey_id=<?= $row['survey_id'] ?>"><?= ucfirst($survey_resp['survey_nama']) ?></a></td>
                                 <td><?php echo $row['responden_tanggal'] ?></td>
                                 <td>
                                     <a href="?pages=responden&act=detail_responden&sub_menu=<?php echo $_GET['sub_menu'] ?>&id=<?php echo $row[$resp_key] ?>"><?php echo $row['responden_nama']?></a>
