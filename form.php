@@ -243,6 +243,7 @@ if (isset($_GET['survey_id'])) {
 
                                     $soal = $soal->getDataBySurveyIdKategori($survey['survey_id']);
                                     $counter = 0;
+                                    $counter_soal = 1;
                                     foreach ($soal as $key => $value) {
                                     ?>
                                         <div class="card collapsed-card card-survey" id="card-survey">
@@ -259,7 +260,7 @@ if (isset($_GET['survey_id'])) {
                                                     if ($value1['soal_jenis'] === 'rating') {
                                                 ?>
                                                         <div class="form-group">
-                                                            <h5><?php echo $value1['no_urut'] . ". " . $value1['soal_nama'] ?></h5>
+                                                            <h5><?php echo $counter_soal. ". " . $value1['soal_nama'] ?></h5>
                                                             <br>
                                                             <div class="icheck-primary d-inline">
                                                                 <input type="radio" id="someRadioId1<?= $value1['soal_id'] ?>" name="<?= $value1['soal_id'] ?>_jawaban" value="1" required />
@@ -289,6 +290,7 @@ if (isset($_GET['survey_id'])) {
                                                 <?php
                                                     }
                                                     echo "<br>";
+                                                    $counter_soal += 1;
                                                 } ?>
                                             </div>
                                             <?php
