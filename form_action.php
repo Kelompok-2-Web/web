@@ -177,7 +177,7 @@ if (isset($_POST['responden_id']) && isset($_POST['jenis_survey'])) {
         $jawaban->insertData($data);
     }
 
-    header("location: login.php?pesan=Terimakasih, anda berhasil mengisi survey");
+    header("location: thankyou.php");
 
     exit();
 }
