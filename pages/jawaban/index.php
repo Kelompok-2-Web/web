@@ -132,14 +132,14 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
               <th>Responden</th>
               <th>Soal</th>
               <th>Jawaban</th>
-              <th>Aksi</th>
+              <!-- <th>Aksi</th> -->
             </tr>
           </thead>
           <tbody>
             <?php
             $soal = new mSurveySoal();
 
-            if ($_GET['responden_id']) {
+            if (isset($_GET['responden_id'])) {
               $list = $jawaban->getDataByRespondenId($_GET['responden_id']);
             } else {
               $list = $jawaban->getData();
@@ -156,10 +156,10 @@ switch (str_replace("jawaban_", "", $_GET['sub_menu'])) {
                 <td><a href="?pages=responden&sub_menu=<?= $_GET['sub_menu'] ?>&responden_id=<?= $row[$resp_key] ?>"><?= ucfirst($resp_res['responden_nama']) ?></a></td>
                 <td><a href="?pages=soal&soal_id=<?= $row['soal_id'] ?>"><?= ucfirst($soal_res['soal_nama']) ?></a></td>
                 <td><?= $row['jawaban'] ?></td>
-                <td>
+                <!-- <td>
                   <a title="Edit Data" href="?pages=jawaban&sub_menu=<?= $_GET['sub_menu'] ?>&act=edit&id=<?= $row[$jaw_key] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                   <a onclick="return confirm('Apakah anda yakin menghapus data ini?')" title="Hapus Data" href="?pages=jawaban/jawaban_action.php&sub_menu=<?= $_GET['sub_menu'] ?>&act=hapus&id=<?= $row[$jaw_key] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                </td>
+                </td> -->
               </tr>
             <?php
               $i++;
