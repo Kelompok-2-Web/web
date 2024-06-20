@@ -2,7 +2,12 @@
 include_once('model/survey/m_survey_soal.php');
 
 $act = $_GET['act'];
-$location = "location: ?pages=soal" . isset($_GET['survey_id']) ? '&survey_id=' . $_GET['survey_id'] : '';
+$location = "location: ?pages=soal";
+
+if (isset($_GET['survey_id'])) {
+   $location = $location . "&survey_id=" . $_GET['survey_id'];
+}
+
 
 if ($act == 'simpan') {
    echo '<pre>';
@@ -17,7 +22,7 @@ if ($act == 'simpan') {
    $insert = new mSurveySoal();
    $insert->insertData($data);
 
-   header($location . 'status=sukses&message=Data berhasil disimpan');
+   header($location . '&status=sukses&message=Data berhasil disimpan');
 } elseif ($act == 'edit') {
    $id = $_GET['id'];
 
