@@ -19,7 +19,7 @@ if (isset($_GET['survey_id'])) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Form Survey <?php echo $survey['survey_nama'] ?></title>
+        <title>Web Survey Polinema | Form Survey <?php echo $survey['survey_nama'] ?></title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -372,7 +372,7 @@ if (isset($_GET['survey_id'])) {
 
     </html>
 <?php
-} else {
+} else if (isset($_GET['role'])) {
     $status = isset($_GET['status']) ? $_GET['status'] : "";
     $message = isset($_GET['message']) ? $_GET['message'] : ""
 ?>
@@ -383,7 +383,7 @@ if (isset($_GET['survey_id'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AdminLTE 3 | <?php echo isset($_GET['pages']) ? ucfirst($_GET['pages']) : "Dashboard"  ?></title>
+        <title>Web Survey Polinema | Daftar Survey <?php echo $_GET['role'] ?></title>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
@@ -485,5 +485,7 @@ if (isset($_GET['survey_id'])) {
     </body>
 
     </html>
-<?php }
+<?php } else {
+    header("location: login.php?pesan=Aksi dilarang");
+}
 ?>

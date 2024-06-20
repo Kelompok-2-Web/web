@@ -95,20 +95,6 @@ if (isset($_GET['survey_id'])) {
                 </select>
               </div>
               <div class="form-group">
-                <label for="soal_nama">Soal</label>
-                <input type="text" name="soal_nama" id="soal_nama" class="form-control">
-                  </div>
-                  <div class="form_group">
-                <label for="soal_nama">Sangat Puas</label>
-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
-                <label for="soal_nama">Puas</label>
-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
-                <label for="soal_nama">Tidak Puas</label>
-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
-                <label for="soal_nama">Sangat Tidak Puas</label>
-                <input type="radio" name="soal_nama" id="soal_nama" class="form-control" value="<?php echo $data['soal_nama'] ?>">
-              </div>
-              <div class="form-group">
                 <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>
                 <a href="?pages=soal" class="btn btn-warning">Kembali</a>
               </div>
