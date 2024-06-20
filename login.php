@@ -27,6 +27,7 @@ if (session_status() == PHP_SESSION_NONE) {
       /* Mengatur posisi gambar latar belakang ke tengah */
       background-repeat: no-repeat;
       /* Mencegah gambar latar belakang diulang */
+      backdrop-filter: blur(3px);
     }
 
     .login-box {
