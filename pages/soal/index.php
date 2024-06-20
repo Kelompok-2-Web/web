@@ -54,7 +54,7 @@ if (isset($_GET['survey_id'])) {
             <div class="card-tools"></div>
           </div>
           <div class="card-body">
-            <form action="?pages=soal/soal_action.php&act=simpan" method="post" id="form-tambah">
+            <form action="?pages=soal/soal_action.php&act=simpan<?= isset($_GET['survey_id']) ? '&survey_id=' . $_GET['survey_id'] : '' ?>" method="post" id="form-tambah">
               <div class="form-group">
                 <label for="survey_id">Survey</label>
                 <?php if (isset($_GET['survey_id'])) {
@@ -95,6 +95,10 @@ if (isset($_GET['survey_id'])) {
                 </select>
               </div>
               <div class="form-group">
+                <label for="soal_nama">Soal</label>
+                <input required type="text" name="soal_nama" id="soal_nama" class="form-control">
+              </div>
+              <div class="form-group">
                 <button type="submit" name="simpan" class="btn btn-primary" value="simpan yoyoy">Simpan</button>
                 <a href="?pages=soal" class="btn btn-warning">Kembali</a>
               </div>
@@ -118,7 +122,7 @@ if (isset($_GET['survey_id'])) {
             $data = $soal->getDataById($id)->fetch_assoc();
             ?>
 
-            <form action="?pages=soal/soal_action.php&act=edit&id=<?= $id ?>" method="post" id="form-tambah">
+            <form action="?pages=soal/soal_action.php&act=edit&id=<?= $id ?><?= isset($_GET['survey_id']) ? '&survey_id=' . $_GET['survey_id'] : '' ?>" method="post" id="form-tambah">
               <div class="form-group">
                 <label for="survey_id">Survey</label>
                 <select class="custom-select rounded-1" name="survey_id">
@@ -195,9 +199,9 @@ if (isset($_GET['survey_id'])) {
 
             if (isset($_GET['survey_id'])) {
               $list = $bank->getDataBySurveyId($_GET['survey_id']);
-            } elseif(isset($_GET['soal_id'])){
+            } elseif (isset($_GET['soal_id'])) {
               $list = $bank->getDataById($_GET['soal_id']);
-            }else {
+            } else {
               $list = $bank->getData();
             }
 

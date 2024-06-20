@@ -2,6 +2,7 @@
 include_once('model/survey/m_survey_soal.php');
 
 $act = $_GET['act'];
+$location = "location: ?pages=soal" . isset($_GET['survey_id']) ? '&survey_id=' . $_GET['survey_id'] : '';
 
 if ($act == 'simpan') {
    echo '<pre>';
@@ -16,7 +17,7 @@ if ($act == 'simpan') {
    $insert = new mSurveySoal();
    $insert->insertData($data);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil disimpan');
+   header($location . 'status=sukses&message=Data berhasil disimpan');
 } elseif ($act == 'edit') {
    $id = $_GET['id'];
 
@@ -31,12 +32,12 @@ if ($act == 'simpan') {
    $update = new mSurveySoal();
    $update->updateData($id, $data);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil diubah');
+   header($location . '&status=sukses&message=Data berhasil diubah');
 } elseif ($act == 'hapus') {
    $id = $_GET['id'];
 
    $hapus = new mSurveySoal();
    $hapus->deleteData($id);
 
-   header('location: ?pages=soal&status=sukses&message=Data berhasil dihapus');
+   header($location . '&status=sukses&message=Data berhasil dihapus');
 }
